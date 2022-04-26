@@ -28,6 +28,10 @@
                                     echo 'class="active"';
                                 }  ?>><a href="<?= base_url('Pabrik/cBahanJadi') ?>"><i class="ti-archive"></i> <span>Pengelolaan Bahan Jadi</span></a></li>
 
+                            <li <?php if ($this->uri->segment(1) == 'Pabrik' && $this->uri->segment(2) == 'cUser') {
+                                    echo 'class="active"';
+                                }  ?>><a href="<?= base_url('Pabrik/cUser') ?>"><i class="ti-user"></i> <span>Pengelolaan Data User</span></a></li>
+
                             <li <?php if ($this->uri->segment(1) == 'Pabrik' && $this->uri->segment(2) == 'cPemesanan') {
                                     echo 'class="active"';
                                 }  ?>><a href="<?= base_url('Pabrik/cPemesanan') ?>"><i class="ti-bag"></i> <span>Pemesanan</span></a></li>
