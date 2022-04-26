@@ -154,6 +154,7 @@ class cPemesanan extends CI_Controller
         foreach ($bahan['pesanan'] as $key => $value) {
             $data = array(
                 'id_detail' => $value->id_detail,
+                'stokp' => $value->qty,
                 'tgl_masuk' => date('Y-m-d')
             );
             $this->db->insert('bahan_pmasuk', $data);

@@ -6,17 +6,8 @@
                 <h4 class="page-title pull-left">Bahan Baku Masuk</h4>
 
             </div>
-            <a href="<?= base_url('Supplier/cBahanBaku/create') ?>">Create Bahan Baku</a>
         </div>
     </div>
-    <?php
-    if ($this->session->userdata('success')) {
-        echo '<div class="alert alert-success" role="alert">
-    <strong>Well done! </strong>';
-        echo $this->session->userdata('success');
-        echo ' </div>';
-    }
-    ?>
 </div>
 <!-- page title area end -->
 <div class="main-content-inner">
@@ -30,22 +21,34 @@
                         <table id="dataTable" class="text-center">
                             <thead class="bg-light text-capitalize">
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start Date</th>
+                                    <th>No.</th>
+                                    <th>Nama Bahan Baku</th>
+                                    <th>Tanggal Masuk</th>
+                                    <th>Quantity</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Airi Satou</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-                                    <td>33</td>
-                                    <td>2008/11/28</td>
-                                </tr>
-
+                                <?php
+                                $no = 1;
+                                foreach ($bahan_masuk as $key => $value) {
+                                ?>
+                                    <tr>
+                                        <td><?= $no++ ?></td>
+                                        <td><?= $value->nama_bahan ?></td>
+                                        <td><?= $value->tgl_masuk ?> | <?= $value->time ?></td>
+                                        <td><?php if ($value->stokp == '0') {
+                                                echo '<span class="badge badge-danger">Stok Habis!</span>';
+                                            } else {
+                                            ?>
+                                                <?= $value->stokp ?>
+                                            <?php
+                                            }
+                                            ?>
+                                        </td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
                             </tbody>
                         </table>
                     </div>

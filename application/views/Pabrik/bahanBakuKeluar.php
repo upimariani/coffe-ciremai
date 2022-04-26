@@ -6,7 +6,7 @@
                 <h4 class="page-title pull-left">Bahan Baku Keluar</h4>
 
             </div>
-            <a href="<?= base_url('Supplier/cBahanBaku/create') ?>">Create Bahan Baku</a>
+            <a href="<?= base_url('Pabrik/cBahanBakuKeluar/create') ?>">Create Bahan Baku</a>
         </div>
     </div>
     <?php
@@ -30,21 +30,31 @@
                         <table id="dataTable" class="text-center">
                             <thead class="bg-light text-capitalize">
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start Date</th>
+                                    <th>No.</th>
+                                    <th>Nama Bahan Baku</th>
+                                    <th>Nama Bahan Jadi</th>
+                                    <th>Tanggal Masuk</th>
+                                    <th>Tanggal Keluar</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Airi Satou</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-                                    <td>33</td>
-                                    <td>2008/11/28</td>
-                                </tr>
+                                <?php
+                                $no = 1;
+                                foreach ($bahan_keluar as $key => $value) {
+                                ?>
+                                    <tr>
+                                        <td><?= $no++ ?></td>
+                                        <td><?= $value->nama_bahan ?><br>
+                                            Quantity : <?= $value->stokpk ?></td>
+                                        <td><?= $value->nm_bhn_jd ?><br>
+                                            Quantity: <?= $value->qty_bj ?></td>
+                                        <td><?= $value->tgl_masuk ?></td>
+                                        <td><?= $value->tgl_keluar ?></td>
+
+                                    </tr>
+                                <?php
+                                }
+                                ?>
 
                             </tbody>
                         </table>
