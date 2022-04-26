@@ -8,16 +8,51 @@ class cPemesanan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('mBahanBaku');
+        $this->load->model('mPesananPabrik');
     }
 
 
     public function index()
     {
+        $data = array(
+            'pesanan' => $this->mPesananPabrik->pesanan()
+        );
         $this->load->view('Pabrik/Layout/head');
         $this->load->view('Pabrik/Layout/header');
-        $this->load->view('Pabrik/pemesanan');
+        $this->load->view('Pabrik/pemesanan', $data);
         $this->load->view('Pabrik/Layout/footer');
     }
+    public function detail_pesanan($id)
+    {
+        $config['upload_path']          = './asset/pembayaran-pabrik';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 5000;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('bukti')) {
+
+            $data = array(
+                'detail' => $this->mPesananPabrik->detail_pesanan($id),
+                'error' => $this->upload->display_errors()
+            );
+            $this->load->view('Pabrik/Layout/head');
+            $this->load->view('Pabrik/Layout/header');
+            $this->load->view('Pabrik/detailPemesanan', $data);
+            $this->load->view('Pabrik/Layout/footer');
+        } else {
+            $upload_data = $this->upload->data();
+            $data = array(
+                'bukti_pembayaran' => $upload_data['file_name'],
+                'status_order' => '1'
+            );
+            $this->db->where('id_tpabrik', $id);
+            $this->db->update('transaksi_pabrik', $data);
+            $this->session->set_flashdata('success', 'Pembayaran Anda Berhasil Dikirim!');
+            redirect('Pabrik/cPemesanan/detail_pesanan/' . $id);
+        }
+    }
+
     public function pesan()
     {
         $data = array(
@@ -110,6 +145,27 @@ class cPemesanan extends CI_Controller
         }
         $this->cart->destroy();
         $this->session->set_flashdata('success', 'Pesanan Anda Berhasil Dikirim!');
+        redirect('Pabrik/cPemesanan');
+    }
+    public function pesanan_diterima($id)
+    {
+        //memasukkan data bahan baku ke barang masuk
+        $bahan = $this->mPesananPabrik->detail_pesanan($id);
+        foreach ($bahan['pesanan'] as $key => $value) {
+            $data = array(
+                'id_detail' => $value->id_detail,
+                'tgl_masuk' => date('Y-m-d')
+            );
+            $this->db->insert('bahan_pmasuk', $data);
+        }
+
+        //mengganti status selesai
+        $data = array(
+            'status_order' => '4'
+        );
+        $this->db->where('id_tpabrik', $id);
+        $this->db->update('transaksi_pabrik', $data);
+        $this->session->set_flashdata('success', 'Pesanan Anda Berhasil Diterima!');
         redirect('Pabrik/cPemesanan');
     }
 }

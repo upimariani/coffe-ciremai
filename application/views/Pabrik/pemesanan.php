@@ -30,21 +30,45 @@
                         <table id="dataTable" class="text-center">
                             <thead class="bg-light text-capitalize">
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start Date</th>
+                                    <th>No</th>
+                                    <th>Id Transaksi</th>
+                                    <th>Atas Nama</th>
+                                    <th>Tanggal Transaksi</th>
+                                    <th>Total Transaksi</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Airi Satou</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-                                    <td>33</td>
-                                    <td>2008/11/28</td>
-                                </tr>
+                                <?php
+                                $no = 1;
+                                foreach ($pesanan as $key => $value) {
+                                ?>
+                                    <tr>
+                                        <td><?= $no++ ?></td>
+                                        <td><?= $value->id_tpabrik ?>
+                                            <?php
+                                            if ($value->status_order == '0') {
+                                                echo ' <span class="badge badge-danger">Belum Bayar</span>';
+                                            } else if ($value->status_order == '1') {
+                                                echo '<span class="badge badge-warning">Menunggu Konfirmasi</span>';
+                                            } else if ($value->status_order == '2') {
+                                                echo ' <span class="badge badge-info">Diproses</span>';
+                                            } else if ($value->status_order == '3') {
+                                                echo '<span class="badge badge-primary">Dikirim</span>';
+                                            } else if ($value->status_order == '4') {
+                                                echo '<span class="badge badge-success">Selesai</span>';
+                                            }
+                                            ?>
+                                        </td>
+                                        <td><?= $value->nama_user ?></td>
+                                        <td><?= $value->tgl_order ?></td>
+                                        <td>Rp. <?= number_format($value->total_bayar, 0) ?></td>
+
+                                        <td><a href="<?= base_url('Pabrik/cPemesanan/detail_pesanan/' . $value->id_tpabrik) ?>">Detail</a></td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
 
                             </tbody>
                         </table>
