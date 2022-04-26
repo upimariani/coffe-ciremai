@@ -30,7 +30,7 @@ class cLogin extends CI_Controller
                 if ($level == '1') {
                     redirect('Supplier/cDashboard');
                 } else if ($level == '2') {
-                    redirect('Pabril/cDashboard');
+                    redirect('Pabrik/cDashboard');
                 } else if ($level == '3') {
                     redirect('Distributor/cDashboard');
                 }

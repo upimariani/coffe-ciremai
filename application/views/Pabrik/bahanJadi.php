@@ -1,27 +1,22 @@
 <!-- page title area start -->
 <div class="page-title-area">
     <div class="row align-items-center">
-        <div class="col-sm-6">
+        <div class="col-sm-6 mb-5 mt-5">
             <div class="breadcrumbs-area clearfix">
-                <h4 class="page-title pull-left">Dashboard</h4>
-                <ul class="breadcrumbs pull-left">
-                    <li><a href="index.html">Home</a></li>
-                    <li><span>Datatable</span></li>
-                </ul>
+                <h4 class="page-title pull-left">Bahan Jadi</h4>
+
             </div>
-        </div>
-        <div class="col-sm-6 clearfix">
-            <div class="user-profile pull-right">
-                <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
-                <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Kumkum Rai <i class="fa fa-angle-down"></i></h4>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Message</a>
-                    <a class="dropdown-item" href="#">Settings</a>
-                    <a class="dropdown-item" href="#">Log Out</a>
-                </div>
-            </div>
+            <a href="<?= base_url('Pabrik/cBahanJadi/create') ?>">Create Bahan Jadi</a>
         </div>
     </div>
+    <?php
+    if ($this->session->userdata('success')) {
+        echo '<div class="alert alert-success" role="alert">
+    <strong>Well done! </strong>';
+        echo $this->session->userdata('success');
+        echo ' </div>';
+    }
+    ?>
 </div>
 <!-- page title area end -->
 <div class="main-content-inner">
@@ -35,22 +30,32 @@
                         <table id="dataTable" class="text-center">
                             <thead class="bg-light text-capitalize">
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start Date</th>
+                                    <th>No</th>
+                                    <th>Nama Bahan Jadi</th>
+                                    <th>Deskripsi</th>
+                                    <th>Harga</th>
+                                    <th>Stok</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Airi Satou</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-                                    <td>33</td>
-                                    <td>2008/11/28</td>
-                                </tr>
-
+                                <?php
+                                $no = 1;
+                                foreach ($bahan_jadi as $key => $value) {
+                                ?>
+                                    <tr>
+                                        <td><?= $no++ ?>.</td>
+                                        <td><?= $value->nm_bhn_jd ?></td>
+                                        <td><?= $value->deskripsi ?></td>
+                                        <td>Rp. <?= number_format($value->harga, 0)  ?></td>
+                                        <td><?= $value->stok ?></td>
+                                        <td><a href="<?= base_url('Pabrik/cBahanJadi/edit/' . $value->id_bahan_jadi) ?>" type="button" class="btn btn-success btn-sm">Update</a>
+                                            <a href="<?= base_url('Pabrik/cBahanJadi/delete/' . $value->id_bahan_jadi) ?>" type="button" class="btn btn-danger btn-sm">Delete</a>
+                                        </td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
                             </tbody>
                         </table>
                     </div>
