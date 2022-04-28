@@ -211,6 +211,21 @@
         });
     }, 3000)
 </script>
+<script>
+    console.log = function() {}
+    $("#bahan-jadi").on('change', function() {
+
+        $(".nama").html($(this).find(':selected').attr('data-nama'));
+        $(".nama").val($(this).find(':selected').attr('data-nama'));
+
+        $(".harga").html($(this).find(':selected').attr('data-harga'));
+        $(".harga").val($(this).find(':selected').attr('data-harga'));
+
+        $(".stok").html($(this).find(':selected').attr('data-stok'));
+        $(".stok").val($(this).find(':selected').attr('data-stok'));
+
+    });
+</script>
 </body>
 
 </html>

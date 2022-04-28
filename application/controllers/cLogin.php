@@ -42,6 +42,7 @@ class cLogin extends CI_Controller
     }
     public function logout()
     {
+        $this->cart->destroy();
         $this->session->unset_userdata('id');
         $this->session->unset_userdata('level');
         $this->session->set_flashdata('success', 'Anda Anda Berhasil LogOut!');

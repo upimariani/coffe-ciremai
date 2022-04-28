@@ -30,7 +30,7 @@
                                     <span>INVOICE</span>
                                 </div>
                                 <div class="iv-right col-6 text-md-right">
-                                    <span><?= $detail['transaksi']->id_tpabrik ?></span>
+                                    <span><?= $detail['transaksi']->id_tdistributor ?></span>
                                 </div>
                             </div>
                         </div>
@@ -40,23 +40,29 @@
                                     <h3>invoiced to</h3>
                                     <h5><?= $detail['transaksi']->nama_user ?></h5>
                                     <p><?= $detail['transaksi']->alamat ?></p>
-                                    <p><?= $detail['transaksi']->no_hp ?></p>
+                                    <p><?= $detail['transaksi']->no_hp ?></p><br>
+                                    <hr>
                                 </div>
+
+                                <?php
+                                if ($detail['transaksi']->status_order == '0') {
+                                ?>
+                                    <p>Silahkan Upload Bukti Pembayaran*</p>
+                                    <?php echo form_open_multipart('Distributor/cPemesanan/detail_pesanan/' . $detail['transaksi']->id_tdistributor); ?>
+                                    <input type="file" name="bukti" class="form-control">
+                                    <button type="submit" class="btn btn-warning mt-2 btn-sm">Upload</button>
+                                    </form>
+                                <?php
+                                }
+                                ?>
+
+
+
                             </div>
                             <div class="col-md-6 text-md-right">
                                 <ul class="invoice-date">
                                     <li>Invoice Date : <?= $detail['transaksi']->tgl_order ?></li>
                                 </ul>
-                                <?php
-                                if ($detail['transaksi']->status_order != '0') {
-                                ?>
-                                    <hr>
-                                    <h5 class="text-muted">Bukti Pembayaran</h5><br>
-                                    <img style="width: 250px;" src="<?= base_url('asset/pembayaran-pabrik/' . $detail['transaksi']->bukti_pembayaran) ?>">
-                                <?php
-                                }
-                                ?>
-
                             </div>
                         </div>
                         <div class="invoice-table table-responsive mt-5">
@@ -77,7 +83,7 @@
                                     ?>
                                         <tr>
                                             <td class="text-center"><?= $no++ ?></td>
-                                            <td class="text-left"><?= $value->nama_bahan ?></td>
+                                            <td class="text-left"><?= $value->nm_bhn_jd ?></td>
                                             <td><?= $value->qty ?></td>
                                             <td>Rp. <?= number_format($value->harga, 0) ?></td>
                                             <td>Rp. <?= number_format($value->harga * $value->qty) ?></td>
@@ -99,13 +105,9 @@
                     <div class="invoice-buttons text-right">
                         <button onclick="window.print()" class="btn btn-success">PRINT INVOICE</button>
                         <?php
-                        if ($detail['transaksi']->status_order == '1') {
+                        if ($detail['transaksi']->status_order == '3') {
                         ?>
-                            <a href="<?= base_url('Supplier/cPemesanan/konfirmasi_pembayaran/' . $detail['transaksi']->id_tpabrik) ?>" class="btn btn-success">Konfirmasi Pembayaran</a>
-                        <?php
-                        } else if ($detail['transaksi']->status_order == '2') {
-                        ?>
-                            <a href="<?= base_url('Supplier/cPemesanan/pesanan_dikirim/' . $detail['transaksi']->id_tpabrik) ?>" class="btn btn-success">Pesanan Dikirim</a>
+                            <a href="<?= base_url('Distributor/cPemesanan/pesanan_diterima/' . $detail['transaksi']->id_tdistributor) ?>">Pesanan Diterima</a>
                         <?php
                         }
                         ?>

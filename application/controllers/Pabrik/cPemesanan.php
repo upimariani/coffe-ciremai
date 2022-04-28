@@ -65,6 +65,7 @@ class cPemesanan extends CI_Controller
     }
     public function cart()
     {
+        $id = '';
         foreach ($this->cart->contents() as $key => $value) {
             $id = $value['id'];
         }
