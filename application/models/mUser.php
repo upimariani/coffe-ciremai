@@ -5,7 +5,7 @@ class mUser extends CI_Model
 {
     public function insert($data)
     {
-        $this->db->insert($data);
+        $this->db->insert('user', $data);
     }
     public function select()
     {

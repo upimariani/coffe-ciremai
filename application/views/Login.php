@@ -41,7 +41,22 @@
                     <div class="login-form-head">
                         <h4>Sign In</h4>
                         <p>Hello there, Sign in and start managing your Admin Template</p>
+                        <?php
+                        if ($this->session->userdata('error')) {
+                            echo '<div class="alert alert-danger" role="alert">';
+                            echo $this->session->userdata('error');
+                            echo ' </div>';
+                        }
+                        ?>
+                        <?php
+                        if ($this->session->userdata('success')) {
+                            echo '<div class="alert alert-success" role="alert">';
+                            echo $this->session->userdata('success');
+                            echo ' </div>';
+                        }
+                        ?>
                     </div>
+
                     <div class="login-form-body">
                         <div class="form-gp">
                             <label for="exampleInputEmail1">Username</label>
