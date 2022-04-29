@@ -8,6 +8,7 @@ class mPesananDistributor extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('bahan_jadi');
+        $this->db->where('stok!=0');
         return $this->db->get()->result();
     }
     public function pesanan()

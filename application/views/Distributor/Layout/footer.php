@@ -226,6 +226,18 @@
 
     });
 </script>
+<script>
+    console.log = function() {}
+    $("#bhn-jd").on('change', function() {
+
+        $(".harga").html($(this).find(':selected').attr('data-harga'));
+        $(".harga").val($(this).find(':selected').attr('data-harga'));
+
+        $(".stok").html($(this).find(':selected').attr('data-stok'));
+        $(".stok").val($(this).find(':selected').attr('data-stok'));
+
+    });
+</script>
 </body>
 
 </html>

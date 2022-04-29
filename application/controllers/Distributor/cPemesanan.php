@@ -144,6 +144,25 @@ class cPemesanan extends CI_Controller
         $this->session->set_flashdata('success', 'Pesanan Anda Berhasil Dikirim!');
         redirect('Distributor/cPemesanan');
     }
+    public function pesanan_diterima($id)
+    {
+        $data = $this->mPesananDistributor->detail_pesanan($id);
+        foreach ($data['pesanan'] as $key => $value) {
+            $masuk = array(
+                'id_detail' => $value->id_detail,
+                'stokd' => $value->qty,
+                'tgl_masuk' => date('Y-m-d')
+            );
+            $this->db->insert('bahan_dmasuk', $masuk);
+        }
+        $status = array(
+            'status_order' => '4'
+        );
+        $this->db->where('id_tdistributor', $id);
+        $this->db->update('transaksi_distributor', $status);
+        $this->session->set_flashdata('success', 'Pesanan Berhasil Diterima!');
+        redirect('Distributor/cPemesanan');
+    }
 }
 
 /* End of file cPemesanan.php */
