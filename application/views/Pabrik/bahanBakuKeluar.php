@@ -6,7 +6,7 @@
                 <h4 class="page-title pull-left">Bahan Baku Keluar</h4>
 
             </div>
-            <a href="<?= base_url('Pabrik/cBahanBakuKeluar/create') ?>">Create Bahan Baku</a>
+            <a href="<?= base_url('Pabrik/cBahanBakuKeluar/create') ?>">Create Bahan Baku</a> | <a href="<?= base_url('Pabrik/cBahanBakuKeluar/stok_bjadi') ?>">Update Stok Bahan Jadi</a>
         </div>
     </div>
     <?php
@@ -25,15 +25,13 @@
         <div class="col-12 mt-5">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Data Table Default</h4>
+                    <h4 class="header-title">Informasi Bahan Baku Keluar</h4>
                     <div class="data-tables">
                         <table id="dataTable" class="text-center">
                             <thead class="bg-light text-capitalize">
                                 <tr>
                                     <th>No.</th>
                                     <th>Nama Bahan Baku</th>
-                                    <th>Nama Bahan Jadi</th>
-                                    <th>Tanggal Masuk</th>
                                     <th>Tanggal Keluar</th>
                                 </tr>
                             </thead>
@@ -46,10 +44,7 @@
                                         <td><?= $no++ ?></td>
                                         <td><?= $value->nama_bahan ?><br>
                                             Quantity : <?= $value->stokpk ?></td>
-                                        <td><?= $value->nm_bhn_jd ?><br>
-                                            Quantity: <?= $value->qty_bj ?></td>
-                                        <td><?= $value->tgl_masuk ?></td>
-                                        <td><?= $value->tgl_keluar ?></td>
+                                        <td><?= $value->time ?></td>
 
                                     </tr>
                                 <?php

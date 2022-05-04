@@ -36,14 +36,7 @@
                                         <td><?= $no++ ?></td>
                                         <td><?= $value->nama_bahan ?></td>
                                         <td><?= $value->tgl_masuk ?> | <?= $value->time ?></td>
-                                        <td><?php if ($value->stokp == '0') {
-                                                echo '<span class="badge badge-danger">Stok Habis!</span>';
-                                            } else {
-                                            ?>
-                                                <?= $value->stokp ?>
-                                            <?php
-                                            }
-                                            ?>
+                                        <td><?= $value->qty ?>
                                         </td>
                                     </tr>
                                 <?php

@@ -231,10 +231,6 @@
     console.log = function() {}
     $("#bhn_baku").on('change', function() {
 
-        $(".tanggal").html($(this).find(':selected').attr('data-tglMasuk'));
-        $(".tanggal").val($(this).find(':selected').attr('data-tglMasuk'));
-
-
         $(".stok").html($(this).find(':selected').attr('data-qty'));
         $(".stok").val($(this).find(':selected').attr('data-qty'));
 
@@ -243,10 +239,10 @@
 </script>
 <script>
     console.log = function() {}
-    $("#bj").on('change', function() {
+    $("#stok-bjadi").on('change', function() {
 
-        $(".stok-bj").html($(this).find(':selected').attr('data-stokbj'));
-        $(".stok-bj").val($(this).find(':selected').attr('data-stokbj'));
+        $(".stok").html($(this).find(':selected').attr('data-qty'));
+        $(".stok").val($(this).find(':selected').attr('data-qty'));
 
 
     });

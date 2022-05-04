@@ -1,26 +1,26 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class cDashboard extends CI_Controller
+class cLaporan extends CI_Controller
 {
 
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('mBahanBaku');
+        $this->load->model('mLaporan');
     }
 
-
+    //laporan supplier
     public function index()
     {
         $data = array(
-            'bahan_baku' => $this->mBahanBaku->select()
+            'transaksi' => $this->mLaporan->lapS_pemesanan()
         );
         $this->load->view('Supplier/Layout/head');
         $this->load->view('Supplier/Layout/header');
-        $this->load->view('Supplier/dashboard', $data);
+        $this->load->view('Supplier/lap_transaksi', $data);
         $this->load->view('Supplier/Layout/footer');
     }
 }
 
-/* End of file cDashboard.php */
+/* End of file cLaporan.php */

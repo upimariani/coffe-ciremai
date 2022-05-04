@@ -34,9 +34,9 @@
                                     <?php
                                     foreach ($bahan_jadi as $key => $value) {
                                     ?>
-                                        <option data-harga="Rp. <?= number_format($value->harga, 0)  ?>" data-stok="<?= $value->stokd ?>" value="<?= $value->id_dmasuk ?>" <?php if (set_value('bahan_jadi') == $value->id_dmasuk) {
-                                                                                                                                                                                echo 'selected';
-                                                                                                                                                                            } ?>><?= $value->nm_bhn_jd ?> | Stok Tgl <?= $value->tgl_masuk ?></option>
+                                        <option data-harga="Rp. <?= number_format($value->harga, 0)  ?>" data-stok="<?= $value->stok_distributor ?>" value="<?= $value->id_bahan_jadi ?>" <?php if (set_value('bahan_jadi') == $value->id_bahan_jadi) {
+                                                                                                                                                                                                echo 'selected';
+                                                                                                                                                                                            } ?>><?= $value->nm_bhn_jd ?> </option>
                                     <?php
                                     }
                                     ?>

@@ -155,10 +155,17 @@ class cPemesanan extends CI_Controller
         foreach ($bahan['pesanan'] as $key => $value) {
             $data = array(
                 'id_detail' => $value->id_detail,
-                'stokp' => $value->qty,
                 'tgl_masuk' => date('Y-m-d')
             );
             $this->db->insert('bahan_pmasuk', $data);
+
+            $stok_sebelumnya = $value->stok_pabrik;
+            $stok = array(
+                'id_bahan' => $value->id_bahan,
+                'stok_pabrik' => $value->qty + $stok_sebelumnya,
+            );
+            $this->db->where('id_bahan', $stok['id_bahan']);
+            $this->db->update('bahan_baku', $stok);
         }
 
         //mengganti status selesai
