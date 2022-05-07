@@ -150,16 +150,10 @@ class cPemesanan extends CI_Controller
         foreach ($data['pesanan'] as $key => $value) {
             $masuk = array(
                 'id_detail' => $value->id_detail,
+                'stokd' => $value->qty,
                 'tgl_masuk' => date('Y-m-d')
             );
             $this->db->insert('bahan_dmasuk', $masuk);
-
-            $stok = array(
-                'id_bahan_jadi' => $value->id_bahan_jadi,
-                'stok_distributor' => $value->qty + $value->stok_distributor
-            );
-            $this->db->where('id_bahan_jadi', $stok['id_bahan_jadi']);
-            $this->db->update('bahan_jadi', $stok);
         }
         $status = array(
             'status_order' => '4'

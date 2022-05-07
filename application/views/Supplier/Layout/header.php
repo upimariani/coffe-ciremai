@@ -29,15 +29,6 @@
                             <li <?php if ($this->uri->segment(1) == 'Supplier' && $this->uri->segment(2) == 'cPemesanan') {
                                     echo 'class="active"';
                                 }  ?>><a href="<?= base_url('Supplier/cPemesanan') ?>"><i class="ti-shopping-cart-full"></i> <span>Pemesanan</span></a></li>
-                            <li <?php if ($this->uri->segment(1) == 'cLaporan') {
-                                    echo 'class="active"';
-                                }  ?>>
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>Laporan</span></a>
-                                <ul class="collapse">
-                                    <li class="active"><a href="<?= base_url('cLaporan') ?>">Laporan Transaksi</a></li>
-                                    <li><a href="index2.html">Laporan Barang Keluar</a></li>
-                                </ul>
-                            </li>
                             <li><a href="<?= base_url('cLogin/logout') ?>"><i class="ti-shift-right"></i> <span>LogOut</span></a></li>
 
                         </ul>
