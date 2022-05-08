@@ -3,7 +3,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class mPesananPabrik extends CI_Model
 {
-
+    //query menampilkan supplier pada pilih supplier
+    public function supplier()
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('level_user=1');
+        return $this->db->get()->result();
+    }
+    //menampilkan bahan baku supplier per pilihan supllier
+    public function bahan_baku($id)
+    {
+        $this->db->select('*');
+        $this->db->from('bahan_baku');
+        $this->db->where('id_user', $id);
+        return $this->db->get()->result();
+    }
     //query untuk bagian pabrik
     public function pesanan()
     {
@@ -26,6 +41,7 @@ class mPesananPabrik extends CI_Model
         $this->db->select('*');
         $this->db->from('transaksi_pabrik');
         $this->db->join('user', 'transaksi_pabrik.id_user = user.id_user', 'left');
+        $this->db->where('supplier', $this->session->userdata('id'));
         return $this->db->get()->result();
     }
 }

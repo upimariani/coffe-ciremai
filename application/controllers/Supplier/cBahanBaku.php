@@ -36,6 +36,7 @@ class cBahanBaku extends CI_Controller
             $this->load->view('Supplier/Layout/footer');
         } else {
             $data = array(
+                'id_user' => $this->session->userdata('id'),
                 'nama_bahan' => $this->input->post('nama'),
                 'deskripsi' => $this->input->post('deskripsi'),
                 'harga' => $this->input->post('harga'),

@@ -28,7 +28,7 @@
                         <h4 class="header-title">Create New Bahan Keluar</h4>
                         <form action="<?= base_url('Pabrik/cBahanBakuKeluar/create') ?>" method="POST">
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Nama Bahan Baku</label>
                                         <select id="bhn_baku" class="form-control" name="bahan_baku">
@@ -51,32 +51,10 @@
                                         <label for="exampleInputEmail1">Stok Barang</label>
                                         <input type="number" class="stok form-control" name="stok" placeholder="Enter Stok Barang" readonly>
                                     </div>
-                                </div>
-                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Quantity Keluar</label>
                                         <input type="number" value="<?= set_value('stok') ?>" name="qty_kel" class="form-control" placeholder="Enter Quantity Keluar">
                                         <?= form_error('qty_kel', '<small id="emailHelp" class="form-text text-danger">', '</small>') ?>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Bahan Jadi</label>
-                                        <select id="bj" class="form-control" name="bahan_jadi">
-                                            <option value="">---Pilih Bahan Jadi---</option>
-                                            <?php
-                                            foreach ($bahan_jadi as $key => $value) {
-                                            ?>
-                                                <option data-stokbj="<?= $value->stok ?>" value="<?= $value->id_bahan_jadi ?>"><?= $value->nm_bhn_jd ?></option>
-                                            <?php
-                                            }
-                                            ?>
-                                        </select>
-                                        <?= form_error('bahan_jadi', '<small id="emailHelp" class="form-text text-danger">', '</small>') ?>
-                                    </div>
-                                    <input type="hidden" class="stok-bj" name="qty_sblm">
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Quantity Bahan Jadi</label>
-                                        <input type="number" value="<?= set_value('stok') ?>" name="stok_bj" class="form-control" placeholder="Enter Quantity Bahan Jadi">
-                                        <?= form_error('stok_bj', '<small id="emailHelp" class="form-text text-danger">', '</small>') ?>
                                     </div>
                                 </div>
                             </div>

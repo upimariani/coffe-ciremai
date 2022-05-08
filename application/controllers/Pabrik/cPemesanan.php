@@ -11,7 +11,6 @@ class cPemesanan extends CI_Controller
         $this->load->model('mPesananPabrik');
     }
 
-
     public function index()
     {
         $data = array(
@@ -20,6 +19,17 @@ class cPemesanan extends CI_Controller
         $this->load->view('Pabrik/Layout/head');
         $this->load->view('Pabrik/Layout/header');
         $this->load->view('Pabrik/pemesanan', $data);
+        $this->load->view('Pabrik/Layout/footer');
+    }
+    //pemeilihan supplier
+    public function pilih_supplier()
+    {
+        $data = array(
+            'supplier' => $this->mPesananPabrik->supplier()
+        );
+        $this->load->view('Pabrik/Layout/head');
+        $this->load->view('Pabrik/Layout/header');
+        $this->load->view('Pabrik/pilihPesanSuplier', $data);
         $this->load->view('Pabrik/Layout/footer');
     }
     public function detail_pesanan($id)
@@ -53,17 +63,18 @@ class cPemesanan extends CI_Controller
         }
     }
 
-    public function pesan()
+    public function pesan($id)
     {
         $data = array(
-            'bahan_baku' => $this->mBahanBaku->select()
+            'bahan_baku' => $this->mPesananPabrik->bahan_baku($id),
+            'supplier' => $id
         );
         $this->load->view('Pabrik/Layout/head');
         $this->load->view('Pabrik/Layout/header');
         $this->load->view('Pabrik/createPesan', $data);
         $this->load->view('Pabrik/Layout/footer');
     }
-    public function cart()
+    public function cart($supplier)
     {
         $id = '';
         foreach ($this->cart->contents() as $key => $value) {
@@ -72,7 +83,7 @@ class cPemesanan extends CI_Controller
         $id_bahan = $this->input->post('id');
         if ($id == $id_bahan) {
             $this->session->set_flashdata('error', 'Barang Sudah Tersedia di dalam Keranjang!');
-            redirect('Pabrik/cPemesanan/pesan');
+            redirect('Pabrik/cPemesanan/pesan/' . $supplier);
         } else {
             $stok = $this->input->post('stok');
             $qty = $this->input->post('qty');
@@ -83,8 +94,10 @@ class cPemesanan extends CI_Controller
                 $this->form_validation->set_rules('qty', 'Quantity Pemesanan', 'required');
 
                 if ($this->form_validation->run() == FALSE) {
+                    //untuk mendapatkan id supplier
                     $data = array(
-                        'bahan_baku' => $this->mBahanBaku->select()
+                        'bahan_baku' => $this->mPesananPabrik->bahan_baku($supplier),
+                        'supplier' => $supplier
                     );
                     $this->load->view('Pabrik/Layout/head');
                     $this->load->view('Pabrik/Layout/header');
@@ -100,18 +113,18 @@ class cPemesanan extends CI_Controller
                     );
                     $this->cart->insert($data);
                     $this->session->set_flashdata('success', 'Bahan Baku Berhasil Masuk kedalam Keranjang!');
-                    redirect('Pabrik/cPemesanan/pesan');
+                    redirect('Pabrik/cPemesanan/pesan/' . $supplier);
                 }
             } else {
                 $this->session->set_flashdata('error', 'Quantity Tidak Terpenuhi! Silahkan lihat kembali Stok Supplier');
-                redirect('Pabrik/cPemesanan/pesan');
+                redirect('Pabrik/cPemesanan/pesan/' . $supplier);
             }
         }
     }
-    public function delete_cart($id)
+    public function delete_cart($id, $supplier)
     {
         $this->cart->remove($id);
-        redirect('Pabrik/cPemesanan/pesan');
+        redirect('Pabrik/cPemesanan/pesan/' . $supplier);
     }
     public function order()
     {
@@ -121,7 +134,8 @@ class cPemesanan extends CI_Controller
             'id_user' => $this->input->post('id_user'),
             'tgl_order' => date('Y-m-d'),
             'total_bayar' => $this->input->post('total'),
-            'status_order' => '0'
+            'status_order' => '0',
+            'supplier' => $this->input->post('supplier')
         );
         $this->db->insert('transaksi_pabrik', $data);
 

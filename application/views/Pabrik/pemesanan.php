@@ -6,7 +6,7 @@
                 <h4 class="page-title pull-left">Pemesanan Bahan Baku</h4>
 
             </div>
-            <a href="<?= base_url('Pabrik/cPemesanan/pesan') ?>">Pesan</a>
+            <a href="<?= base_url('Pabrik/cPemesanan/pilih_supplier') ?>">Pesan</a>
         </div>
     </div>
     <?php

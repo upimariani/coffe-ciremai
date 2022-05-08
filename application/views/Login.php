@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Login - srtdash</title>
+    <title>LOGIN USER COFFE CIREMAI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="<?= base_url('asset/srtdash/srtdash/') ?>assets/css/bootstrap.min.css">
@@ -39,8 +39,7 @@
             <div class="login-box ptb--100">
                 <form action="<?= base_url('cLogin') ?>" method="POST">
                     <div class="login-form-head">
-                        <h4>Sign In</h4>
-                        <p>Hello there, Sign in and start managing your Admin Template</p>
+                        <h4>Login User Ciremai Coffe</h4>
                         <?php
                         if ($this->session->userdata('error')) {
                             echo '<div class="alert alert-danger" role="alert">';
@@ -72,9 +71,6 @@
                         </div>
                         <div class="submit-btn-area">
                             <button id="form_submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
-                        </div>
-                        <div class="form-footer text-center mt-5">
-                            <p class="text-muted">Don't have an account? <a href="register.html">Sign up</a></p>
                         </div>
                     </div>
                 </form>

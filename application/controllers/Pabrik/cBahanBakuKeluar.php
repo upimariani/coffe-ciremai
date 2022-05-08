@@ -26,13 +26,9 @@ class cBahanBakuKeluar extends CI_Controller
     {
         $this->form_validation->set_rules('bahan_baku', 'Bahan Baku', 'required');
         $this->form_validation->set_rules('qty_kel', 'Quantity Keluar', 'required');
-        $this->form_validation->set_rules('bahan_jadi', 'Bahan Jadi', 'required');
-        $this->form_validation->set_rules('stok_bj', 'Quantity Bahan Jadi', 'required');
-
 
         if ($this->form_validation->run() == FALSE) {
             $data = array(
-                'bahan_jadi' => $this->mBahanJadi->select(),
                 'bahan_baku' => $this->mBKeluarPabrik->bahan_baku()
             );
             $this->load->view('Pabrik/Layout/head');
@@ -49,8 +45,8 @@ class cBahanBakuKeluar extends CI_Controller
                 //memasukkan data ke tabel bahan keluar
                 $data = array(
                     'id_pmasuk' => $this->input->post('bahan_baku'),
-                    'id_bahan_jadi' => $this->input->post('bahan_jadi'),
-                    'qty_bj' => $this->input->post('stok_bj'),
+                    // 'id_bahan_jadi' => $this->input->post('bahan_jadi'),
+                    // 'qty_bj' => $this->input->post('stok_bj'),
                     'tgl_keluar' => date('Y-m-d'),
                     'stokpk' => $this->input->post('qty_kel')
                 );
@@ -64,19 +60,45 @@ class cBahanBakuKeluar extends CI_Controller
                 $this->mBKeluarPabrik->update_stok($id, $stok);
 
                 //update stok bahan jadi untuk proses transaksi distributor
-                $id_bj = $this->input->post('bahan_jadi');
-                $a = $this->input->post('stok_bj');
-                $b = $this->input->post('qty_sblm');
-                $b += $a;
-                $dstok_bj = array(
-                    'stok' => $b
-                );
-                $this->mBKeluarPabrik->stok_bj($id_bj, $dstok_bj);
+                // $id_bj = $this->input->post('bahan_jadi');
+                // $a = $this->input->post('stok_bj');
+                // $b = $this->input->post('qty_sblm');
+                // $b += $a;
+                // $dstok_bj = array( 
+                //     'stok' => $b
+                // );
+                // $this->mBKeluarPabrik->stok_bj($id_bj, $dstok_bj);
 
 
                 $this->session->set_flashdata('success', 'Data Bahan Baku Keluar Berhasil Disimpan!');
                 redirect('Pabrik/cBahanBakuKeluar');
             }
+        }
+    }
+    public function updateStokBahanJadi()
+    {
+        $this->form_validation->set_rules('bahan_jadi', 'Bahan Jadi', 'required');
+        $this->form_validation->set_rules('stok', 'Quantity Bahan Jadi', 'required');
+
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'bahan_jadi' => $this->mBKeluarPabrik->bahan_jadi()
+            );
+            $this->load->view('Pabrik/Layout/head');
+            $this->load->view('Pabrik/Layout/header');
+            $this->load->view('Pabrik/updateStokBJ', $data);
+            $this->load->view('Pabrik/Layout/footer');
+        } else {
+            $qty = $this->input->post('qty');
+            $stok = $this->input->post('stok');
+            $data = array(
+                'id_bahan_jadi' => $this->input->post('bahan_jadi'),
+                'stok' => $qty + $stok
+            );
+            $this->mBKeluarPabrik->stok_bj($data['id_bahan_jadi'], $data);
+            $this->session->set_flashdata('success', 'Stok Bahan Jadi Berhasil Ditambahkan!');
+            redirect('Pabrik/cBahanJadi');
         }
     }
 }

@@ -11,6 +11,7 @@ class mBahanBaku extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('bahan_baku');
+        $this->db->where('id_user', $this->session->userdata('id'));
         return $this->db->get()->result();
     }
     public function edit($id)
@@ -29,6 +30,13 @@ class mBahanBaku extends CI_Model
     {
         $this->db->where('id_bahan', $id);
         $this->db->delete('bahan_baku');
+    }
+
+    //informasi bahan baku pabrik
+    public function bahan_baku()
+    {
+        $query = $this->db->query('SELECT SUM(stokp) as stok, detail_tpabrik.id_bahan, nama_bahan FROM `bahan_pmasuk` JOIN detail_tpabrik ON bahan_pmasuk.id_detail = detail_tpabrik.id_detail JOIN bahan_baku ON detail_tpabrik.id_bahan = bahan_baku.id_bahan GROUP BY detail_tpabrik.id_bahan')->result();
+        return $query;
     }
 }
 

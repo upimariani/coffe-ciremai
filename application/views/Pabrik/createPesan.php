@@ -5,7 +5,7 @@
                 <h4 class="page-title pull-left">Pesan Bahan Baku</h4>
 
             </div>
-            <a href="<?= base_url('Supplier/cBahanBaku') ?>">Kembali</a>
+            <a href="<?= base_url('Pabrik/cPemesanan') ?>">Kembali</a>
         </div>
 
     </div>
@@ -35,7 +35,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Pesan Bahan Baku</h4>
-                        <form action="<?= base_url('Pabrik/cPemesanan/cart') ?>" method="POST">
+                        <form action="<?= base_url('Pabrik/cPemesanan/cart/' . $supplier) ?>" method="POST">
                             <input type="hidden" name="price" class="harga">
                             <input type="hidden" name="stok" class="stok">
                             <input type="hidden" name="name" class="nama">
@@ -113,7 +113,7 @@
                                                     <td><?= $value['price'] ?></td>
                                                     <td><?= $value['qty'] ?></td>
                                                     <td>Rp. <?= number_format($value['price'] * $value['qty'])  ?></td>
-                                                    <td><a href="<?= base_url('Pabrik/cPemesanan/delete_cart/' . $value['rowid']) ?>"><i class="ti-trash"></i></a></td>
+                                                    <td><a href="<?= base_url('Pabrik/cPemesanan/delete_cart/' . $value['rowid'] . '/' . $supplier) ?>"><i class="ti-trash"></i></a></td>
                                                 </tr>
                                             <?php
                                             }
@@ -132,6 +132,7 @@
                                     <form action="<?= base_url('Pabrik/cPemesanan/order') ?>" method="POST">
                                         <?php $id_transaksi = date('Ymd') . strtoupper(random_string('alnum', 8));
                                         ?>
+                                        <input type="hidden" name="supplier" value="<?= $supplier ?>">
                                         <input type="hidden" name="id_transaksi" value="<?= $id_transaksi ?>">
                                         <input type="hidden" name="total" value="<?= $this->cart->total() ?>">
                                         <input type="hidden" name="id_user" value="<?= $this->session->userdata('id') ?>">

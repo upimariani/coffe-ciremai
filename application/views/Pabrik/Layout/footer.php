@@ -243,12 +243,23 @@
 </script>
 <script>
     console.log = function() {}
-    $("#bj").on('change', function() {
+    $("#bhn_jd").on('change', function() {
 
-        $(".stok-bj").html($(this).find(':selected').attr('data-stokbj'));
-        $(".stok-bj").val($(this).find(':selected').attr('data-stokbj'));
+        $(".stok").html($(this).find(':selected').attr('data-qty'));
+        $(".stok").val($(this).find(':selected').attr('data-qty'));
 
 
+    });
+</script>
+<script>
+    console.log = function() {}
+    $("#supplier").on('change', function() {
+
+        $(".alamat").html($(this).find(':selected').attr('data-alamat'));
+        $(".alamat").val($(this).find(':selected').attr('data-alamat'));
+
+        $(".hp").html($(this).find(':selected').attr('data-hp'));
+        $(".hp").val($(this).find(':selected').attr('data-hp'));
     });
 </script>
 </body>

@@ -26,7 +26,6 @@ class mBKeluarPabrik extends CI_Model
         $this->db->join('bahan_pmasuk', 'bahan_pkeluar.id_pmasuk = bahan_pmasuk.id_pmasuk', 'left');
         $this->db->join('detail_tpabrik', 'bahan_pmasuk.id_detail = detail_tpabrik.id_detail', 'left');
         $this->db->join('bahan_baku', 'bahan_baku.id_bahan = detail_tpabrik.id_bahan', 'left');
-        $this->db->join('bahan_jadi', 'bahan_pkeluar.id_bahan_jadi = bahan_jadi.id_bahan_jadi', 'left');
 
         return $this->db->get()->result();
     }
@@ -37,6 +36,12 @@ class mBKeluarPabrik extends CI_Model
         $this->db->join('detail_tpabrik', 'bahan_pmasuk.id_detail = detail_tpabrik.id_detail', 'left');
         $this->db->join('bahan_baku', 'detail_tpabrik.id_bahan = bahan_baku.id_bahan', 'left');
         $this->db->where('stokp!=0');
+        return $this->db->get()->result();
+    }
+    public function bahan_jadi()
+    {
+        $this->db->select('*');
+        $this->db->from('bahan_jadi');
         return $this->db->get()->result();
     }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2022 at 03:28 PM
+-- Generation Time: May 08, 2022 at 10:26 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bahan_baku` (
   `id_bahan` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
   `nama_bahan` varchar(125) NOT NULL,
   `deskripsi` text NOT NULL,
   `harga` varchar(15) NOT NULL,
@@ -40,10 +41,10 @@ CREATE TABLE `bahan_baku` (
 -- Dumping data for table `bahan_baku`
 --
 
-INSERT INTO `bahan_baku` (`id_bahan`, `nama_bahan`, `deskripsi`, `harga`, `stok`) VALUES
-(1, 'Biji Kopi Robusta', 'Coffea Canephora', '25000', 12),
-(2, 'Biji Kopi Arabika', 'Coffea Arabica', '30000', 13),
-(3, 'Biji Kopi Ekspreso', 'Ekspreso', '30000', 14);
+INSERT INTO `bahan_baku` (`id_bahan`, `id_user`, `nama_bahan`, `deskripsi`, `harga`, `stok`) VALUES
+(1, 1, 'Biji Kopi Robusta', 'Coffea Canephora', '25000', 9),
+(2, 5, 'Biji Kopi Arabika', 'Coffea Arabica', '30000', 13),
+(3, 1, 'Biji Kopi Ekspreso', 'Ekspreso', '30000', 12);
 
 -- --------------------------------------------------------
 
@@ -85,7 +86,9 @@ CREATE TABLE `bahan_dmasuk` (
 --
 
 INSERT INTO `bahan_dmasuk` (`id_dmasuk`, `id_detail`, `stokd`, `tgl_masuk`, `time`) VALUES
-(1, 1, 1, '2022-04-29', '2022-04-29 13:18:27');
+(1, 1, 1, '2022-04-29', '2022-04-29 13:18:27'),
+(2, 2, 2, '2022-05-08', '2022-05-08 01:18:20'),
+(3, 3, 2, '2022-05-08', '2022-05-08 01:18:20');
 
 -- --------------------------------------------------------
 
@@ -106,8 +109,8 @@ CREATE TABLE `bahan_jadi` (
 --
 
 INSERT INTO `bahan_jadi` (`id_bahan_jadi`, `nm_bhn_jd`, `deskripsi`, `harga`, `stok`) VALUES
-(1, 'Bubuk Kopi Arabika', 'Arabika coffe', '65000', 0),
-(2, 'Bubuk Coffe Robusta', 'Robusta Coffe', '70000', 3),
+(1, 'Bubuk Kopi Arabika', 'Arabika coffe', '65000', 10),
+(2, 'Bubuk Coffe Robusta', 'Robusta Coffe', '70000', 1),
 (3, 'Bubuk Coffe Ekspreso', 'Ekspreso Coffe', '80000', 0);
 
 -- --------------------------------------------------------
@@ -119,8 +122,6 @@ INSERT INTO `bahan_jadi` (`id_bahan_jadi`, `nm_bhn_jd`, `deskripsi`, `harga`, `s
 CREATE TABLE `bahan_pkeluar` (
   `id_pkeluar` int(11) NOT NULL,
   `id_pmasuk` int(11) NOT NULL,
-  `id_bahan_jadi` int(11) NOT NULL,
-  `qty_bj` int(11) NOT NULL,
   `tgl_keluar` varchar(15) NOT NULL,
   `stokpk` int(11) NOT NULL,
   `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -130,8 +131,10 @@ CREATE TABLE `bahan_pkeluar` (
 -- Dumping data for table `bahan_pkeluar`
 --
 
-INSERT INTO `bahan_pkeluar` (`id_pkeluar`, `id_pmasuk`, `id_bahan_jadi`, `qty_bj`, `tgl_keluar`, `stokpk`, `time`) VALUES
-(1, 1, 2, 5, '2022-04-29', 2, '2022-04-29 13:14:32');
+INSERT INTO `bahan_pkeluar` (`id_pkeluar`, `id_pmasuk`, `tgl_keluar`, `stokpk`, `time`) VALUES
+(1, 1, '2022-04-29', 2, '2022-04-29 13:14:32'),
+(2, 2, '2022-05-08', 2, '2022-05-08 00:15:01'),
+(3, 1, '2022-05-08', 1, '2022-05-08 00:15:16');
 
 -- --------------------------------------------------------
 
@@ -152,8 +155,8 @@ CREATE TABLE `bahan_pmasuk` (
 --
 
 INSERT INTO `bahan_pmasuk` (`id_pmasuk`, `id_detail`, `tgl_masuk`, `stokp`, `time`) VALUES
-(1, 1, '2022-04-29', 3, '2022-04-29 13:14:04'),
-(2, 2, '2022-04-29', 5, '2022-04-29 13:14:04'),
+(1, 1, '2022-04-29', 2, '2022-04-29 13:14:04'),
+(2, 2, '2022-04-29', 3, '2022-04-29 13:14:04'),
 (3, 3, '2022-04-29', 5, '2022-04-29 13:14:04');
 
 -- --------------------------------------------------------
@@ -174,7 +177,9 @@ CREATE TABLE `detail_tdistributor` (
 --
 
 INSERT INTO `detail_tdistributor` (`id_detail`, `id_tdistibutor`, `id_bahan_jadi`, `qty`) VALUES
-(1, '202204291BJACIR3', 2, 2);
+(1, '202204291BJACIR3', 2, 2),
+(2, '20220508GIJMARQ3', 1, 2),
+(3, '20220508GIJMARQ3', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -196,7 +201,10 @@ CREATE TABLE `detail_tpabrik` (
 INSERT INTO `detail_tpabrik` (`id_detail`, `id_tpabrik`, `id_bahan`, `qty`) VALUES
 (1, '20220429LLIQHYBW', 1, 5),
 (2, '20220429LLIQHYBW', 2, 5),
-(3, '20220429LLIQHYBW', 3, 5);
+(3, '20220429LLIQHYBW', 3, 5),
+(4, '20220508CNP1IP4L', 1, 1),
+(5, '20220508DBIVJXN4', 3, 2),
+(6, '20220508DBIVJXN4', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -218,7 +226,8 @@ CREATE TABLE `transaksi_distributor` (
 --
 
 INSERT INTO `transaksi_distributor` (`id_tdistributor`, `id_user`, `tgl_order`, `total_bayar`, `status_order`, `bukti_pembayaran`) VALUES
-('202204291BJACIR3', 4, '2022-04-29', '140000', 4, 'gambar.gif');
+('202204291BJACIR3', 5, '2022-04-29', '140000', 4, 'gambar.gif'),
+('20220508GIJMARQ3', 4, '2022-05-08', '270000', 4, 'download.jpg');
 
 -- --------------------------------------------------------
 
@@ -232,15 +241,18 @@ CREATE TABLE `transaksi_pabrik` (
   `tgl_order` varchar(20) NOT NULL,
   `total_bayar` varchar(20) NOT NULL,
   `status_order` int(11) NOT NULL,
-  `bukti_pembayaran` text NOT NULL
+  `bukti_pembayaran` text NOT NULL,
+  `supplier` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transaksi_pabrik`
 --
 
-INSERT INTO `transaksi_pabrik` (`id_tpabrik`, `id_user`, `tgl_order`, `total_bayar`, `status_order`, `bukti_pembayaran`) VALUES
-('20220429LLIQHYBW', 2, '2022-04-29', '425000', 4, 'download.jpg');
+INSERT INTO `transaksi_pabrik` (`id_tpabrik`, `id_user`, `tgl_order`, `total_bayar`, `status_order`, `bukti_pembayaran`, `supplier`) VALUES
+('20220429LLIQHYBW', 2, '2022-04-29', '425000', 4, 'download.jpg', 1),
+('20220508CNP1IP4L', 2, '2022-05-08', '25000', 0, '', 1),
+('20220508DBIVJXN4', 2, '2022-05-08', '110000', 0, '', 1);
 
 -- --------------------------------------------------------
 
@@ -263,9 +275,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nama_user`, `alamat`, `no_hp`, `username`, `password`, `level_user`) VALUES
-(1, 'admin', 'Kuningan, Jawa Barat', '085156727368', 'supplier', 'supplier', 1),
+(1, 'Yayan Ahmad', 'Kuningan, Jawa Barat', '085156727368', 'supplier', 'supplier', 1),
 (2, 'maman', 'ciawigebang', '085156727368', 'pabrik', 'pabrik', 2),
-(4, 'distributor', 'Cigadung Kuningan', '08987654678', 'distributor', 'distributor', 3);
+(4, 'distributor', 'Cigadung Kuningan', '08987654678', 'distributor', 'distributor', 3),
+(5, 'Dahlan Sadikin', 'Cilebak, Kuningan', '089765678765', 'supplier2', 'supplier2', 1);
 
 --
 -- Indexes for dumped tables
@@ -345,7 +358,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `bahan_baku`
 --
 ALTER TABLE `bahan_baku`
-  MODIFY `id_bahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_bahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `bahan_dkeluar`
@@ -357,7 +370,7 @@ ALTER TABLE `bahan_dkeluar`
 -- AUTO_INCREMENT for table `bahan_dmasuk`
 --
 ALTER TABLE `bahan_dmasuk`
-  MODIFY `id_dmasuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_dmasuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `bahan_jadi`
@@ -369,7 +382,7 @@ ALTER TABLE `bahan_jadi`
 -- AUTO_INCREMENT for table `bahan_pkeluar`
 --
 ALTER TABLE `bahan_pkeluar`
-  MODIFY `id_pkeluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pkeluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `bahan_pmasuk`
@@ -381,19 +394,19 @@ ALTER TABLE `bahan_pmasuk`
 -- AUTO_INCREMENT for table `detail_tdistributor`
 --
 ALTER TABLE `detail_tdistributor`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `detail_tpabrik`
 --
 ALTER TABLE `detail_tpabrik`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
