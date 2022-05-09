@@ -33,6 +33,8 @@ class cLogin extends CI_Controller
                     redirect('Pabrik/cDashboard');
                 } else if ($level == '3') {
                     redirect('Distributor/cDashboard');
+                } else if ($level == '4') {
+                    redirect('Pemilik/cLaporan');
                 }
             } else {
                 $this->session->set_flashdata('error', 'Username dan Password Salah!');

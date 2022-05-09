@@ -11,6 +11,7 @@ class cBahanJadi extends CI_Controller
     }
     public function index()
     {
+        $this->protect->protect();
         $data = array(
             'bahan_jadi' => $this->mBahanJadi->select()
         );
@@ -21,6 +22,7 @@ class cBahanJadi extends CI_Controller
     }
     public function create()
     {
+        $this->protect->protect();
         $this->form_validation->set_rules('nama', 'Nama Bahan Jadi', 'required');
         $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
         $this->form_validation->set_rules('harga', 'Harga', 'required');

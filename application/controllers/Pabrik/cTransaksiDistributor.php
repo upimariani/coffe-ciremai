@@ -13,6 +13,7 @@ class cTransaksiDistributor extends CI_Controller
 
     public function index()
     {
+        $this->protect->protect();
         $data = array(
             'transaksi' => $this->mPesananDistributor->transaksi()
         );
@@ -23,6 +24,7 @@ class cTransaksiDistributor extends CI_Controller
     }
     public function detail_pesanan($id)
     {
+        $this->protect->protect();
         $data = array(
             'detail' => $this->mPesananDistributor->detail_pesanan($id)
         );

@@ -11,6 +11,7 @@ class cBahanBakuMasuk extends CI_Controller
     }
     public function index()
     {
+        $this->protect->protect();
         $data = array(
             'bahan_masuk' => $this->mBMasukPabrik->select()
         );

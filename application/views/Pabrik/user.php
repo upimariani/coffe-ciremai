@@ -55,8 +55,10 @@
                                                 echo 'Supplier';
                                             } else if ($value->level_user == '2') {
                                                 echo 'Pabrik';
-                                            } else {
+                                            } else if ($value->level_user == '3') {
                                                 echo 'Distributor';
+                                            } else if ($value->level_user == '4') {
+                                                echo 'Pemilik';
                                             } ?></td>
                                         <td><a href="<?= base_url('Pabrik/cUser/edit/' . $value->id_user) ?>" type="button" class="btn btn-success btn-sm">Update</a>
                                             <a href="<?= base_url('Pabrik/cUser/delete/' . $value->id_user) ?>" type="button" class="btn btn-danger btn-sm">Delete</a>

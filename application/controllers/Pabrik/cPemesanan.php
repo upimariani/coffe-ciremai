@@ -13,6 +13,7 @@ class cPemesanan extends CI_Controller
 
     public function index()
     {
+        $this->protect->protect();
         $data = array(
             'pesanan' => $this->mPesananPabrik->pesanan()
         );
@@ -24,6 +25,7 @@ class cPemesanan extends CI_Controller
     //pemeilihan supplier
     public function pilih_supplier()
     {
+        $this->protect->protect();
         $data = array(
             'supplier' => $this->mPesananPabrik->supplier()
         );
@@ -34,6 +36,7 @@ class cPemesanan extends CI_Controller
     }
     public function detail_pesanan($id)
     {
+        $this->protect->protect();
         $config['upload_path']          = './asset/pembayaran-pabrik';
         $config['allowed_types']        = 'gif|jpg|png';
         $config['max_size']             = 5000;
@@ -65,6 +68,7 @@ class cPemesanan extends CI_Controller
 
     public function pesan($id)
     {
+        $this->protect->protect();
         $data = array(
             'bahan_baku' => $this->mPesananPabrik->bahan_baku($id),
             'supplier' => $id
@@ -76,6 +80,7 @@ class cPemesanan extends CI_Controller
     }
     public function cart($supplier)
     {
+        $this->protect->protect();
         $id = '';
         foreach ($this->cart->contents() as $key => $value) {
             $id = $value['id'];
@@ -89,7 +94,7 @@ class cPemesanan extends CI_Controller
             $qty = $this->input->post('qty');
 
 
-            if ($qty < $stok) {
+            if ($qty <= $stok) {
                 $this->form_validation->set_rules('id', 'Bahan Baku', 'required');
                 $this->form_validation->set_rules('qty', 'Quantity Pemesanan', 'required');
 
@@ -123,11 +128,13 @@ class cPemesanan extends CI_Controller
     }
     public function delete_cart($id, $supplier)
     {
+        $this->protect->protect();
         $this->cart->remove($id);
         redirect('Pabrik/cPemesanan/pesan/' . $supplier);
     }
     public function order()
     {
+        $this->protect->protect();
         //memasukkan data ke tabel transaksi pabrik ke supplier
         $data = array(
             'id_tpabrik' => $this->input->post('id_transaksi'),
@@ -164,6 +171,7 @@ class cPemesanan extends CI_Controller
     }
     public function pesanan_diterima($id)
     {
+        $this->protect->protect();
         //memasukkan data bahan baku ke barang masuk
         $bahan = $this->mPesananPabrik->detail_pesanan($id);
         foreach ($bahan['pesanan'] as $key => $value) {

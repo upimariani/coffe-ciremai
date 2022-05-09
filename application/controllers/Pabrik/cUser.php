@@ -13,6 +13,7 @@ class cUser extends CI_Controller
 
     public function index()
     {
+        $this->protect->protect();
         $data = array(
             'user' => $this->mUser->select()
         );
@@ -23,6 +24,7 @@ class cUser extends CI_Controller
     }
     public function create()
     {
+        $this->protect->protect();
         $this->form_validation->set_rules('nama', 'Nama User', 'required');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required');
         $this->form_validation->set_rules('no_hp', 'No Telepon', 'required|min_length[11]|max_length[13]');

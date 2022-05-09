@@ -12,6 +12,7 @@ class cBahanBaku extends CI_Controller
 
     public function index()
     {
+        $this->protect->protect();
         $data = array(
             'stok' => $this->mBahanBaku->bahan_baku()
         );

@@ -13,6 +13,7 @@ class cBahanMasuk extends CI_Controller
 
     public function index()
     {
+        $this->protect->protect();
         $data = array(
             'masuk' => $this->mBMasukDistributor->select()
         );

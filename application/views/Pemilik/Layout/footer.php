@@ -1,5 +1,4 @@
 <footer>
-
 </footer>
 <!-- footer area end-->
 </div>
@@ -211,53 +210,29 @@
 </script>
 <script>
     console.log = function() {}
-    $("#bahan-baku").on('change', function() {
-
-        $(".harga").html($(this).find(':selected').attr('data-harga'));
-        $(".harga").val($(this).find(':selected').attr('data-harga'));
-
-
-        $(".stok").html($(this).find(':selected').attr('data-stok'));
-        $(".stok").val($(this).find(':selected').attr('data-stok'));
+    $("#bahan-jadi").on('change', function() {
 
         $(".nama").html($(this).find(':selected').attr('data-nama'));
         $(".nama").val($(this).find(':selected').attr('data-nama'));
 
-    });
-</script>
-<script>
-    console.log = function() {}
-    $("#bhn_baku").on('change', function() {
+        $(".harga").html($(this).find(':selected').attr('data-harga'));
+        $(".harga").val($(this).find(':selected').attr('data-harga'));
 
-        $(".tanggal").html($(this).find(':selected').attr('data-tglMasuk'));
-        $(".tanggal").val($(this).find(':selected').attr('data-tglMasuk'));
-
-
-        $(".stok").html($(this).find(':selected').attr('data-qty'));
-        $(".stok").val($(this).find(':selected').attr('data-qty'));
-
+        $(".stok").html($(this).find(':selected').attr('data-stok'));
+        $(".stok").val($(this).find(':selected').attr('data-stok'));
 
     });
 </script>
 <script>
     console.log = function() {}
-    $("#bhn_jd").on('change', function() {
+    $("#bhn-jd").on('change', function() {
 
-        $(".stok").html($(this).find(':selected').attr('data-qty'));
-        $(".stok").val($(this).find(':selected').attr('data-qty'));
+        $(".harga").html($(this).find(':selected').attr('data-harga'));
+        $(".harga").val($(this).find(':selected').attr('data-harga'));
 
+        $(".stok").html($(this).find(':selected').attr('data-stok'));
+        $(".stok").val($(this).find(':selected').attr('data-stok'));
 
-    });
-</script>
-<script>
-    console.log = function() {}
-    $("#supplier").on('change', function() {
-
-        $(".alamat").html($(this).find(':selected').attr('data-alamat'));
-        $(".alamat").val($(this).find(':selected').attr('data-alamat'));
-
-        $(".hp").html($(this).find(':selected').attr('data-hp'));
-        $(".hp").val($(this).find(':selected').attr('data-hp'));
     });
 </script>
 </body>

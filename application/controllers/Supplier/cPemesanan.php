@@ -12,6 +12,7 @@ class cPemesanan extends CI_Controller
 
     public function index()
     {
+        $this->protect->protect();
         $data = array(
             'pesanan' => $this->mPesananPabrik->transaksi()
         );
@@ -22,6 +23,7 @@ class cPemesanan extends CI_Controller
     }
     public function detail_pesanan($id)
     {
+        $this->protect->protect();
         $data = array(
             'detail' => $this->mPesananPabrik->detail_pesanan($id)
         );

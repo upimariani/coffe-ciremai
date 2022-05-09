@@ -13,6 +13,7 @@ class cPemesanan extends CI_Controller
 
     public function index()
     {
+        $this->protect->protect();
         $data = array(
             'pesanan' => $this->mPesananDistributor->pesanan()
         );
@@ -23,6 +24,7 @@ class cPemesanan extends CI_Controller
     }
     public function detail_pesanan($id)
     {
+        $this->protect->protect();
         $config['upload_path']          = './asset/pembayaran-distributor';
         $config['allowed_types']        = 'gif|jpg|png';
         $config['max_size']             = 5000;
@@ -52,6 +54,7 @@ class cPemesanan extends CI_Controller
     }
     public function create()
     {
+        $this->protect->protect();
         $data = array(
             'bahan_jadi' => $this->mPesananDistributor->bahan_jadi()
         );
@@ -62,6 +65,7 @@ class cPemesanan extends CI_Controller
     }
     public function add_cart()
     {
+        $this->protect->protect();
         $id = '';
         foreach ($this->cart->contents() as $key => $value) {
             $id = $value['id'];
@@ -111,6 +115,7 @@ class cPemesanan extends CI_Controller
     }
     public function order()
     {
+        $this->protect->protect();
         //memasukkan data ke tabel transaksi pabrik ke supplier
         $data = array(
             'id_tdistributor' => $this->input->post('id_transaksi'),
@@ -124,7 +129,7 @@ class cPemesanan extends CI_Controller
         //memasukkan data ke tabel detail transaksi pabrik ke supplier
         foreach ($this->cart->contents() as $key => $value) {
             $detail = array(
-                'id_tdistibutor' => $this->input->post('id_transaksi'),
+                'id_tdistributor' => $this->input->post('id_transaksi'),
                 'id_bahan_jadi' => $value['id'],
                 'qty' => $value['qty']
             );
@@ -146,6 +151,7 @@ class cPemesanan extends CI_Controller
     }
     public function pesanan_diterima($id)
     {
+        $this->protect->protect();
         $data = $this->mPesananDistributor->detail_pesanan($id);
         foreach ($data['pesanan'] as $key => $value) {
             $masuk = array(

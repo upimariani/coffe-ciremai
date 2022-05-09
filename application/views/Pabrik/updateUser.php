@@ -57,6 +57,9 @@
                                     <option value="3" <?php if ($user->level_user == '3') {
                                                             echo 'selected';
                                                         } ?>>Distributor</option>
+                                    <option value="4" <?php if ($user->level_user == '4') {
+                                                            echo 'selected';
+                                                        } ?>>Pemilik</option>
                                 </select>
                                 <?= form_error('level', '<small id="emailHelp" class="form-text text-danger">', '</small>') ?>
                             </div>

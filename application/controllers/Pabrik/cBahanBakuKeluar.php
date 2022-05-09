@@ -14,6 +14,7 @@ class cBahanBakuKeluar extends CI_Controller
 
     public function index()
     {
+        $this->protect->protect();
         $data = array(
             'bahan_keluar' => $this->mBKeluarPabrik->select()
         );
@@ -24,6 +25,7 @@ class cBahanBakuKeluar extends CI_Controller
     }
     public function create()
     {
+        $this->protect->protect();
         $this->form_validation->set_rules('bahan_baku', 'Bahan Baku', 'required');
         $this->form_validation->set_rules('qty_kel', 'Quantity Keluar', 'required');
 
@@ -77,6 +79,7 @@ class cBahanBakuKeluar extends CI_Controller
     }
     public function updateStokBahanJadi()
     {
+        $this->protect->protect();
         $this->form_validation->set_rules('bahan_jadi', 'Bahan Jadi', 'required');
         $this->form_validation->set_rules('stok', 'Quantity Bahan Jadi', 'required');
 

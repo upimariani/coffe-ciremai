@@ -10,6 +10,8 @@ class mBKeluarDistributor extends CI_Model
         $this->db->join('bahan_dmasuk', 'bahan_dmasuk.id_dmasuk = bahan_dkeluar.id_dmasuk', 'left');
         $this->db->join('detail_tdistributor', 'bahan_dmasuk.id_detail = detail_tdistributor.id_detail', 'left');
         $this->db->join('bahan_jadi', 'bahan_jadi.id_bahan_jadi = detail_tdistributor.id_bahan_jadi', 'left');
+        $this->db->join('transaksi_distributor', 'detail_tdistributor.id_tdistributor = transaksi_distributor.id_tdistributor', 'left');
+        $this->db->where('id_user', $this->session->userdata('id'));
         return $this->db->get()->result();
     }
 
@@ -20,6 +22,9 @@ class mBKeluarDistributor extends CI_Model
         $this->db->from('bahan_dmasuk');
         $this->db->join('detail_tdistributor', 'bahan_dmasuk.id_detail = detail_tdistributor.id_detail', 'left');
         $this->db->join('bahan_jadi', 'detail_tdistributor.id_bahan_jadi = bahan_jadi.id_bahan_jadi', 'left');
+        $this->db->join('transaksi_distributor', 'transaksi_distributor.id_tdistributor = detail_tdistributor.id_tdistributor', 'left');
+        $this->db->where('id_user', $this->session->userdata('id'));
+
         return $this->db->get()->result();
     }
     public function insert($data)
