@@ -33,7 +33,7 @@
                                 ?>
                                     <tr>
                                         <td><?= $no++ ?></td>
-                                        <td><?= $value->nama_bahan ?></td>
+                                        <td><?= $value->nm_bahanbaku ?></td>
                                         <td>Qty :<?= $value->stok ?></td>
                                     </tr>
                                 <?php

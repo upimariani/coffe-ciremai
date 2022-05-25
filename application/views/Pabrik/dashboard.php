@@ -42,9 +42,9 @@
                                     ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            <td><?= $value->nama_bahan ?></td>
-                                            <td><?= $value->deskripsi ?></td>
-                                            <td>Rp.<?= number_format($value->harga)  ?></td>
+                                            <td><?= $value->nm_bahanbaku ?></td>
+                                            <td><?= $value->deskripsi_bb ?></td>
+                                            <td>Rp.<?= number_format($value->harga_bb)  ?></td>
                                             <td>
                                                 <?php
                                                 if ($value->stok <= '2') {
@@ -101,7 +101,7 @@
                                     ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            <td><?= $value->nm_bhn_jd ?></td>
+                                            <td><?= $value->nm_produk ?></td>
                                             <td><?= $value->deskripsi ?></td>
                                             <td>Rp.<?= number_format($value->harga)  ?></td>
                                             <td>

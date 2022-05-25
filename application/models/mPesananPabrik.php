@@ -23,15 +23,15 @@ class mPesananPabrik extends CI_Model
     public function pesanan()
     {
         $this->db->select('*');
-        $this->db->from('transaksi_pabrik');
-        $this->db->join('user', 'transaksi_pabrik.id_user = user.id_user', 'left');
+        $this->db->from('invoice_pabrik');
+        $this->db->join('user', 'invoice_pabrik.id_user = user.id_user', 'left');
         $this->db->where('user.id_user', $this->session->userdata('id'));
         return $this->db->get()->result();
     }
     public function detail_pesanan($id)
     {
-        $data['pesanan'] = $this->db->query("SELECT * FROM `transaksi_pabrik` JOIN detail_tpabrik ON transaksi_pabrik.id_tpabrik = detail_tpabrik.id_tpabrik JOIN bahan_baku ON detail_tpabrik.id_bahan = bahan_baku.id_bahan WHERE transaksi_pabrik.id_tpabrik='" . $id . "'")->result();
-        $data['transaksi'] = $this->db->query("SELECT * FROM `transaksi_pabrik` JOIN user ON transaksi_pabrik.id_user=user.id_user WHERE id_tpabrik='" . $id . "'")->row();
+        $data['pesanan'] = $this->db->query("SELECT * FROM `invoice_pabrik` JOIN detail_invoicep ON invoice_pabrik.id_invoicep = detail_invoicep.id_invoicep JOIN bahan_baku ON detail_invoicep.id_bahanbaku = bahan_baku.id_bahanbaku WHERE invoice_pabrik.id_invoicep='" . $id . "'")->result();
+        $data['transaksi'] = $this->db->query("SELECT * FROM `invoice_pabrik` JOIN user ON invoice_pabrik.id_user=user.id_user WHERE id_invoicep='" . $id . "'")->row();
         return $data;
     }
 
@@ -39,8 +39,8 @@ class mPesananPabrik extends CI_Model
     public function transaksi()
     {
         $this->db->select('*');
-        $this->db->from('transaksi_pabrik');
-        $this->db->join('user', 'transaksi_pabrik.id_user = user.id_user', 'left');
+        $this->db->from('invoice_pabrik');
+        $this->db->join('user', 'invoice_pabrik.id_user = user.id_user', 'left');
         $this->db->where('supplier', $this->session->userdata('id'));
         return $this->db->get()->result();
     }

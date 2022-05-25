@@ -6,10 +6,10 @@ class mBMasukDistributor extends CI_Model
     public function select()
     {
         $this->db->select('*');
-        $this->db->from('bahan_dmasuk');
-        $this->db->join('detail_tdistributor', 'bahan_dmasuk.id_detail = detail_tdistributor.id_detail', 'left');
-        $this->db->join('transaksi_distributor', 'detail_tdistributor.id_tdistributor = transaksi_distributor.id_tdistributor', 'left');
-        $this->db->join('bahan_jadi', 'detail_tdistributor.id_bahan_jadi = bahan_jadi.id_bahan_jadi', 'left');
+        $this->db->from('produk_masukdistr');
+        $this->db->join('detail_invoiced', 'produk_masukdistr.id_detaild = detail_invoiced.id_detaild', 'left');
+        $this->db->join('invoice_distributor', 'detail_invoiced.id_invoiced = invoice_distributor.id_invoiced', 'left');
+        $this->db->join('produk', 'detail_invoiced.id_produk = produk.id_produk', 'left');
         $this->db->where('id_user', $this->session->userdata('id'));
         return $this->db->get()->result();
     }

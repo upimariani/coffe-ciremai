@@ -36,7 +36,7 @@ class cBahanJadi extends CI_Controller
             $this->load->view('Pabrik/Layout/footer');
         } else {
             $data = array(
-                'nm_bhn_jd' => $this->input->post('nama'),
+                'nm_produk' => $this->input->post('nama'),
                 'deskripsi' => $this->input->post('deskripsi'),
                 'harga' => $this->input->post('harga'),
                 'stok' => $this->input->post('stok')
@@ -64,7 +64,7 @@ class cBahanJadi extends CI_Controller
             $this->load->view('Pabrik/Layout/footer');
         } else {
             $data = array(
-                'nm_bhn_jd' => $this->input->post('nama'),
+                'nm_produk' => $this->input->post('nama'),
                 'deskripsi' => $this->input->post('deskripsi'),
                 'harga' => $this->input->post('harga'),
                 'stok' => $this->input->post('stok')

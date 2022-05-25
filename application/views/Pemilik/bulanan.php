@@ -38,11 +38,11 @@
                                     ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            <td><?= $value->nama_bahan ?></td>
+                                            <td><?= $value->nm_bahanbaku ?></td>
                                             <td><?= $value->tgl_keluar ?></td>
                                             <td><?= $value->stokpk ?></td>
                                             <td><?= $value->tgl_masuk ?></td>
-                                            <td><?= $value->id_tpabrik ?></td>
+                                            <td><?= $value->id_invoicep ?></td>
                                             <td><?= $value->nama_user ?></td>
                                         </tr>
                                     <?php

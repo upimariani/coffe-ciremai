@@ -36,7 +36,7 @@
                                             <?php
                                             foreach ($bahan_baku as $key => $value) {
                                             ?>
-                                                <option data-tglMasuk="<?= $value->tgl_masuk ?>" data-qty="<?= $value->stokp ?>" value="<?= $value->id_pmasuk ?>"><?= $value->nama_bahan ?> | <?= $value->tgl_masuk ?></option>
+                                                <option data-tglMasuk="<?= $value->tgl_masuk ?>" data-qty="<?= $value->stokp ?>" value="<?= $value->id_bbmasukp ?>"><?= $value->nm_bahanbaku ?> | <?= $value->tgl_masuk ?></option>
                                             <?php
                                             }
                                             ?>

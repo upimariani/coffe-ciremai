@@ -35,20 +35,20 @@ class cPemesanan extends CI_Controller
     public function konfirmasi_pembayaran($id)
     {
         $data = array(
-            'status_order' => '2'
+            'status_orderpabrik' => '2'
         );
-        $this->db->where('id_tpabrik', $id);
-        $this->db->update('transaksi_pabrik', $data);
+        $this->db->where('id_invoicep', $id);
+        $this->db->update('invoice_pabrik', $data);
         $this->session->set_flashdata('success', 'Pesanan Pabrik Berhasil Dikonfirmasi!');
         redirect('Supplier/cPemesanan');
     }
     public function pesanan_dikirim($id)
     {
         $data = array(
-            'status_order' => '3'
+            'status_orderpabrik' => '3'
         );
-        $this->db->where('id_tpabrik', $id);
-        $this->db->update('transaksi_pabrik', $data);
+        $this->db->where('id_invoicep', $id);
+        $this->db->update('invoice_pabrik', $data);
         $this->session->set_flashdata('success', 'Pesanan Pabrik Segera Dikirim!');
         redirect('Supplier/cPemesanan');
     }

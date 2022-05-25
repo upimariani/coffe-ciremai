@@ -41,18 +41,18 @@
                                 ?>
                                     <tr>
                                         <td><?= $no++ ?></td>
-                                        <td><?= $value->nama_bahan ?></td>
-                                        <td><?= $value->deskripsi ?></td>
-                                        <td>Rp.<?= number_format($value->harga)  ?></td>
+                                        <td><?= $value->nm_bahanbaku ?></td>
+                                        <td><?= $value->deskripsi_bb ?></td>
+                                        <td>Rp.<?= number_format($value->harga_bb)  ?></td>
                                         <td>
                                             <?php
-                                            if ($value->stok <= '2') {
+                                            if ($value->stok_bb <= '2') {
                                             ?>
-                                                <span class="text-danger"><?= $value->stok ?><i class="ti-arrow-down"></i></span>
+                                                <span class="text-danger"><?= $value->stok_bb ?><i class="ti-arrow-down"></i></span>
                                             <?php
                                             } else {
                                             ?>
-                                                <span class="text-success"><?= $value->stok ?><i class="ti-arrow-up"></i></span>
+                                                <span class="text-success"><?= $value->stok_bb ?><i class="ti-arrow-up"></i></span>
                                             <?php
                                             }
                                             ?>

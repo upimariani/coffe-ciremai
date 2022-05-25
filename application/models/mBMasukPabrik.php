@@ -7,9 +7,9 @@ class mBMasukPabrik extends CI_Model
     public function select()
     {
         $this->db->select('*');
-        $this->db->from('bahan_pmasuk');
-        $this->db->join('detail_tpabrik', 'bahan_pmasuk.id_detail = detail_tpabrik.id_detail', 'left');
-        $this->db->join('bahan_baku', 'detail_tpabrik.id_bahan = bahan_baku.id_bahan', 'left');
+        $this->db->from('bb_masukpabrik');
+        $this->db->join('detail_invoicep', 'bb_masukpabrik.id_detailp = detail_invoicep.id_detailp', 'left');
+        $this->db->join('bahan_baku', 'detail_invoicep.id_bahanbaku = bahan_baku.id_bahanbaku', 'left');
         return $this->db->get()->result();
     }
 }

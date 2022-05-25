@@ -6,29 +6,29 @@ class mBahanJadi extends CI_Model
     public function select()
     {
         $this->db->select('*');
-        $this->db->from('bahan_jadi');
+        $this->db->from('produk');
         return $this->db->get()->result();
     }
     public function insert($data)
     {
-        $this->db->insert('bahan_jadi', $data);
+        $this->db->insert('produk', $data);
     }
     public function edit($id)
     {
         $this->db->select('*');
-        $this->db->from('bahan_jadi');
-        $this->db->where('id_bahan_jadi', $id);
+        $this->db->from('produk');
+        $this->db->where('id_produk', $id);
         return $this->db->get()->row();
     }
     public function update($id, $data)
     {
-        $this->db->where('id_bahan_jadi', $id);
-        $this->db->update('bahan_jadi', $data);
+        $this->db->where('id_produk', $id);
+        $this->db->update('produk', $data);
     }
     public function delete($id)
     {
-        $this->db->where('id_bahan_jadi', $id);
-        $this->db->delete('bahan_jadi');
+        $this->db->where('id_produk', $id);
+        $this->db->delete('produk');
     }
 }
 

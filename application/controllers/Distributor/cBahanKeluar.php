@@ -46,7 +46,7 @@ class cBahanKeluar extends CI_Controller
                 redirect('Distributor/cBahanKeluar/create');
             } else {
                 $data = array(
-                    'id_dmasuk' => $this->input->post('bahan_jadi'),
+                    'id_masukd' => $this->input->post('bahan_jadi'),
                     'tgl_keluar' => date('Y-m-d'),
                     'qty_kel' => $this->input->post('qty')
                 );
@@ -56,11 +56,11 @@ class cBahanKeluar extends CI_Controller
                 $stok_sblm = $this->input->post('stok');
                 $qty = $this->input->post('qty');
                 $stok_up = array(
-                    'id_dmasuk' => $this->input->post('bahan_jadi'),
+                    'id_masukd' => $this->input->post('bahan_jadi'),
                     'stokd' => $stok_sblm - $qty
                 );
-                $this->db->where('id_dmasuk', $stok_up['id_dmasuk']);
-                $this->db->update('bahan_dmasuk', $stok_up);
+                $this->db->where('id_masukd', $stok_up['id_masukd']);
+                $this->db->update('produk_masukdistr', $stok_up);
                 $this->session->set_flashdata('success', 'Bahan Jadi Keluar Berhasil Disimpan!');
                 redirect('Distributor/cBahanKeluar');
             }

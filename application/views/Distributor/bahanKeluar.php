@@ -44,7 +44,7 @@
                                 ?>
                                     <tr>
                                         <td><?= $no++ ?></td>
-                                        <td><?= $value->nm_bhn_jd ?></td>
+                                        <td><?= $value->nm_produk ?></td>
                                         <td><?= $value->tgl_keluar ?></td>
                                         <td><?= $value->qty_kel ?></td>
                                         <td><?= $value->time ?></td>

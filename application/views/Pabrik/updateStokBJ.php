@@ -28,7 +28,7 @@
                                             <?php
                                             foreach ($bahan_jadi as $key => $value) {
                                             ?>
-                                                <option data-qty="<?= $value->stok ?>" value="<?= $value->id_bahan_jadi ?>"><?= $value->nm_bhn_jd ?></option>
+                                                <option data-qty="<?= $value->stok ?>" value="<?= $value->id_produk ?>"><?= $value->nm_produk ?></option>
                                             <?php
                                             }
                                             ?>

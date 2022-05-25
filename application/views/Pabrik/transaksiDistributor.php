@@ -44,26 +44,26 @@
                                 ?>
                                     <tr>
                                         <td><?= $no++ ?></td>
-                                        <td><?= $value->id_tdistributor ?>
+                                        <td><?= $value->id_invoiced ?>
                                             <?php
-                                            if ($value->status_order == '0') {
+                                            if ($value->status_orderdistr == '0') {
                                                 echo ' <span class="badge badge-danger">Belum Bayar</span>';
-                                            } else if ($value->status_order == '1') {
+                                            } else if ($value->status_orderdistr == '1') {
                                                 echo '<span class="badge badge-warning">Menunggu Konfirmasi</span>';
-                                            } else if ($value->status_order == '2') {
+                                            } else if ($value->status_orderdistr == '2') {
                                                 echo ' <span class="badge badge-info">Diproses</span>';
-                                            } else if ($value->status_order == '3') {
+                                            } else if ($value->status_orderdistr == '3') {
                                                 echo '<span class="badge badge-primary">Dikirim</span>';
-                                            } else if ($value->status_order == '4') {
+                                            } else if ($value->status_orderdistr == '4') {
                                                 echo '<span class="badge badge-success">Selesai</span>';
                                             }
                                             ?>
                                         </td>
                                         <td><?= $value->nama_user ?></td>
-                                        <td><?= $value->tgl_order ?></td>
-                                        <td>Rp. <?= number_format($value->total_bayar, 0) ?></td>
+                                        <td><?= $value->tgl_orderdistr ?></td>
+                                        <td>Rp. <?= number_format($value->total_bayardistr, 0) ?></td>
 
-                                        <td><a href="<?= base_url('Pabrik/cTransaksiDistributor/detail_pesanan/' . $value->id_tdistributor) ?>">Detail</a></td>
+                                        <td><a href="<?= base_url('Pabrik/cTransaksiDistributor/detail_pesanan/' . $value->id_invoiced) ?>">Detail</a></td>
                                     </tr>
                                 <?php
                                 }

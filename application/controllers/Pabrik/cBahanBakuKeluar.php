@@ -46,7 +46,7 @@ class cBahanBakuKeluar extends CI_Controller
             } else {
                 //memasukkan data ke tabel bahan keluar
                 $data = array(
-                    'id_pmasuk' => $this->input->post('bahan_baku'),
+                    'id_bbmasukp' => $this->input->post('bahan_baku'),
                     // 'id_bahan_jadi' => $this->input->post('bahan_jadi'),
                     // 'qty_bj' => $this->input->post('stok_bj'),
                     'tgl_keluar' => date('Y-m-d'),
@@ -96,10 +96,10 @@ class cBahanBakuKeluar extends CI_Controller
             $qty = $this->input->post('qty');
             $stok = $this->input->post('stok');
             $data = array(
-                'id_bahan_jadi' => $this->input->post('bahan_jadi'),
+                'id_produk' => $this->input->post('bahan_jadi'),
                 'stok' => $qty + $stok
             );
-            $this->mBKeluarPabrik->stok_bj($data['id_bahan_jadi'], $data);
+            $this->mBKeluarPabrik->stok_bj($data['id_produk'], $data);
             $this->session->set_flashdata('success', 'Stok Bahan Jadi Berhasil Ditambahkan!');
             redirect('Pabrik/cBahanJadi');
         }

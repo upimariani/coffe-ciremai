@@ -39,10 +39,10 @@ class cBahanBaku extends CI_Controller
         } else {
             $data = array(
                 'id_user' => $this->session->userdata('id'),
-                'nama_bahan' => $this->input->post('nama'),
-                'deskripsi' => $this->input->post('deskripsi'),
-                'harga' => $this->input->post('harga'),
-                'stok' => $this->input->post('stok'),
+                'nm_bahanbaku' => $this->input->post('nama'),
+                'deskripsi_bb' => $this->input->post('deskripsi'),
+                'harga_bb' => $this->input->post('harga'),
+                'stok_bb' => $this->input->post('stok'),
             );
             $this->mBahanBaku->insert($data);
             $this->session->set_flashdata('success', 'Data Bahan Baku Berhasil Disimpan!');
@@ -67,10 +67,10 @@ class cBahanBaku extends CI_Controller
             $this->load->view('Supplier/Layout/footer');
         } else {
             $item = array(
-                'nama_bahan' => $this->input->post('nama'),
-                'deskripsi' => $this->input->post('deskripsi'),
-                'harga' => $this->input->post('harga'),
-                'stok' => $this->input->post('stok'),
+                'nm_bahanbaku' => $this->input->post('nama'),
+                'deskripsi_bb' => $this->input->post('deskripsi'),
+                'harga_bb' => $this->input->post('harga'),
+                'stok_bb' => $this->input->post('stok'),
             );
             $this->mBahanBaku->update($id, $item);
             $this->session->set_flashdata('success', 'Data Bahan Baku Berhasil Diperbaharui!');

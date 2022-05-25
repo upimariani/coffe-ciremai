@@ -56,11 +56,11 @@ class cPemesanan extends CI_Controller
         } else {
             $upload_data = $this->upload->data();
             $data = array(
-                'bukti_pembayaran' => $upload_data['file_name'],
-                'status_order' => '1'
+                'bukti_bayarpabrik' => $upload_data['file_name'],
+                'status_orderpabrik' => '1'
             );
-            $this->db->where('id_tpabrik', $id);
-            $this->db->update('transaksi_pabrik', $data);
+            $this->db->where('id_invoicep', $id);
+            $this->db->update('invoice_pabrik', $data);
             $this->session->set_flashdata('success', 'Pembayaran Anda Berhasil Dikirim!');
             redirect('Pabrik/cPemesanan/detail_pesanan/' . $id);
         }
@@ -81,49 +81,39 @@ class cPemesanan extends CI_Controller
     public function cart($supplier)
     {
         $this->protect->protect();
-        $id = '';
-        foreach ($this->cart->contents() as $key => $value) {
-            $id = $value['id'];
-        }
-        $id_bahan = $this->input->post('id');
-        if ($id == $id_bahan) {
-            $this->session->set_flashdata('error', 'Barang Sudah Tersedia di dalam Keranjang!');
-            redirect('Pabrik/cPemesanan/pesan/' . $supplier);
-        } else {
-            $stok = $this->input->post('stok');
-            $qty = $this->input->post('qty');
+        $stok = $this->input->post('stok');
+        $qty = $this->input->post('qty');
 
 
-            if ($qty <= $stok) {
-                $this->form_validation->set_rules('id', 'Bahan Baku', 'required');
-                $this->form_validation->set_rules('qty', 'Quantity Pemesanan', 'required');
+        if ($qty <= $stok) {
+            $this->form_validation->set_rules('id', 'Bahan Baku', 'required');
+            $this->form_validation->set_rules('qty', 'Quantity Pemesanan', 'required');
 
-                if ($this->form_validation->run() == FALSE) {
-                    //untuk mendapatkan id supplier
-                    $data = array(
-                        'bahan_baku' => $this->mPesananPabrik->bahan_baku($supplier),
-                        'supplier' => $supplier
-                    );
-                    $this->load->view('Pabrik/Layout/head');
-                    $this->load->view('Pabrik/Layout/header');
-                    $this->load->view('Pabrik/createPesan', $data);
-                    $this->load->view('Pabrik/Layout/footer');
-                } else {
-                    $data = array(
-                        'id' => $this->input->post('id'),
-                        'name' => $this->input->post('name'),
-                        'price' => $this->input->post('price'),
-                        'qty' => $this->input->post('qty'),
-                        'stok' => $this->input->post('stok')
-                    );
-                    $this->cart->insert($data);
-                    $this->session->set_flashdata('success', 'Bahan Baku Berhasil Masuk kedalam Keranjang!');
-                    redirect('Pabrik/cPemesanan/pesan/' . $supplier);
-                }
+            if ($this->form_validation->run() == FALSE) {
+                //untuk mendapatkan id supplier
+                $data = array(
+                    'bahan_baku' => $this->mPesananPabrik->bahan_baku($supplier),
+                    'supplier' => $supplier
+                );
+                $this->load->view('Pabrik/Layout/head');
+                $this->load->view('Pabrik/Layout/header');
+                $this->load->view('Pabrik/createPesan', $data);
+                $this->load->view('Pabrik/Layout/footer');
             } else {
-                $this->session->set_flashdata('error', 'Quantity Tidak Terpenuhi! Silahkan lihat kembali Stok Supplier');
+                $data = array(
+                    'id' => $this->input->post('id'),
+                    'name' => $this->input->post('name'),
+                    'price' => $this->input->post('price'),
+                    'qty' => $this->input->post('qty'),
+                    'stok' => $this->input->post('stok')
+                );
+                $this->cart->insert($data);
+                $this->session->set_flashdata('success', 'Bahan Baku Berhasil Masuk kedalam Keranjang!');
                 redirect('Pabrik/cPemesanan/pesan/' . $supplier);
             }
+        } else {
+            $this->session->set_flashdata('error', 'Quantity Tidak Terpenuhi! Silahkan lihat kembali Stok Supplier');
+            redirect('Pabrik/cPemesanan/pesan/' . $supplier);
         }
     }
     public function delete_cart($id, $supplier)
@@ -137,32 +127,32 @@ class cPemesanan extends CI_Controller
         $this->protect->protect();
         //memasukkan data ke tabel transaksi pabrik ke supplier
         $data = array(
-            'id_tpabrik' => $this->input->post('id_transaksi'),
+            'id_invoicep' => $this->input->post('id_transaksi'),
             'id_user' => $this->input->post('id_user'),
-            'tgl_order' => date('Y-m-d'),
-            'total_bayar' => $this->input->post('total'),
-            'status_order' => '0',
+            'tgl_orderpabrik' => date('Y-m-d'),
+            'total_bayarpabrik' => $this->input->post('total'),
+            'status_orderpabrik' => '0',
             'supplier' => $this->input->post('supplier')
         );
-        $this->db->insert('transaksi_pabrik', $data);
+        $this->db->insert('invoice_pabrik', $data);
 
         //memasukkan data ke tabel detail transaksi pabrik ke supplier
         foreach ($this->cart->contents() as $key => $value) {
             $detail = array(
-                'id_tpabrik' => $this->input->post('id_transaksi'),
-                'id_bahan' => $value['id'],
-                'qty' => $value['qty']
+                'id_invoicep' => $this->input->post('id_transaksi'),
+                'id_bahanbaku' => $value['id'],
+                'qty_bb' => $value['qty']
             );
-            $this->db->insert('detail_tpabrik', $detail);
+            $this->db->insert('detail_invoicep', $detail);
         }
 
         //mengurangi stok
         foreach ($this->cart->contents() as $key => $value) {
             $stok = array(
-                'id_bahan' => $value['id'],
-                'stok' => $value['stok'] - $value['qty']
+                'id_bahanbaku' => $value['id'],
+                'stok_bb' => $value['stok'] - $value['qty']
             );
-            $this->db->where('id_bahan', $stok['id_bahan']);
+            $this->db->where('id_bahanbaku', $stok['id_bahanbaku']);
             $this->db->update('bahan_baku', $stok);
         }
         $this->cart->destroy();
@@ -176,19 +166,19 @@ class cPemesanan extends CI_Controller
         $bahan = $this->mPesananPabrik->detail_pesanan($id);
         foreach ($bahan['pesanan'] as $key => $value) {
             $data = array(
-                'id_detail' => $value->id_detail,
-                'stokp' => $value->qty,
+                'id_detailp' => $value->id_detailp,
+                'stokp' => $value->qty_bb,
                 'tgl_masuk' => date('Y-m-d')
             );
-            $this->db->insert('bahan_pmasuk', $data);
+            $this->db->insert('bb_masukpabrik', $data);
         }
 
         //mengganti status selesai
         $data = array(
-            'status_order' => '4'
+            'status_orderpabrik' => '4'
         );
-        $this->db->where('id_tpabrik', $id);
-        $this->db->update('transaksi_pabrik', $data);
+        $this->db->where('id_invoicep', $id);
+        $this->db->update('invoice_pabrik', $data);
         $this->session->set_flashdata('success', 'Pesanan Anda Berhasil Diterima!');
         redirect('Pabrik/cPemesanan');
     }

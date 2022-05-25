@@ -46,7 +46,7 @@
                                     <?php
                                     foreach ($bahan_baku as $key => $value) {
                                     ?>
-                                        <option data-nama="<?= $value->nama_bahan ?>" data-harga="<?= $value->harga ?>" data-stok="<?= $value->stok ?>" value="<?= $value->id_bahan ?>"><?= $value->nama_bahan ?></option>
+                                        <option data-nama="<?= $value->nm_bahanbaku ?>" data-harga="<?= $value->harga_bb ?>" data-stok="<?= $value->stok_bb ?>" value="<?= $value->id_bahanbaku ?>"><?= $value->nm_bahanbaku ?></option>
                                     <?php
                                     }
                                     ?>

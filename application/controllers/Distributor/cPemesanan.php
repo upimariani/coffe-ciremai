@@ -43,11 +43,11 @@ class cPemesanan extends CI_Controller
         } else {
             $upload_data = $this->upload->data();
             $data = array(
-                'bukti_pembayaran' => $upload_data['file_name'],
-                'status_order' => '1'
+                'bukti_bayardistr' => $upload_data['file_name'],
+                'status_orderdistr' => '1'
             );
-            $this->db->where('id_tdistributor', $id);
-            $this->db->update('transaksi_distributor', $data);
+            $this->db->where('id_invoiced', $id);
+            $this->db->update('invoice_distributor', $data);
             $this->session->set_flashdata('success', 'Pembayaran Anda Berhasil Dikirim!');
             redirect('Distributor/cPemesanan/detail_pesanan/' . $id);
         }
@@ -66,45 +66,35 @@ class cPemesanan extends CI_Controller
     public function add_cart()
     {
         $this->protect->protect();
-        $id = '';
-        foreach ($this->cart->contents() as $key => $value) {
-            $id = $value['id'];
-        }
-        $id_bahan = $this->input->post('id');
-        if ($id == $id_bahan) {
-            $this->session->set_flashdata('error', 'Barang Sudah Tersedia di dalam Keranjang!');
-            redirect('Distributor/cPemesanan/create', 'refresh');
+
+        $this->form_validation->set_rules('id', 'Bahan Jadi', 'required');
+        $this->form_validation->set_rules('qty', 'Quantity Pemesanan', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'bahan_jadi' => $this->mPesananDistributor->bahan_jadi()
+            );
+            $this->load->view('Distributor/Layout/head');
+            $this->load->view('Distributor/Layout/header');
+            $this->load->view('Distributor/createPesanan', $data);
+            $this->load->view('Distributor/Layout/footer');
         } else {
-
-            $this->form_validation->set_rules('id', 'Bahan Jadi', 'required');
-            $this->form_validation->set_rules('qty', 'Quantity Pemesanan', 'required');
-
-            if ($this->form_validation->run() == FALSE) {
-                $data = array(
-                    'bahan_jadi' => $this->mPesananDistributor->bahan_jadi()
-                );
-                $this->load->view('Distributor/Layout/head');
-                $this->load->view('Distributor/Layout/header');
-                $this->load->view('Distributor/createPesanan', $data);
-                $this->load->view('Distributor/Layout/footer');
+            $stok = $this->input->post('stok');
+            $qty = $this->input->post('qty');
+            if ($qty > $stok) {
+                $this->session->set_flashdata('error', 'Quantity Melebihi Stok yang Tersedia!');
+                redirect('Distributor/cPemesanan/create', 'refresh');
             } else {
-                $stok = $this->input->post('stok');
-                $qty = $this->input->post('qty');
-                if ($qty > $stok) {
-                    $this->session->set_flashdata('error', 'Quantity Melebihi Stok yang Tersedia!');
-                    redirect('Distributor/cPemesanan/create', 'refresh');
-                } else {
-                    $data = array(
-                        'id' => $this->input->post('id'),
-                        'name' => $this->input->post('name'),
-                        'price' => $this->input->post('harga'),
-                        'qty' => $this->input->post('qty'),
-                        'stok' => $this->input->post('stok')
-                    );
-                    $this->cart->insert($data);
-                    $this->session->set_flashdata('success', 'Bahan Jadi Berhasil Masuk Keranjang!');
-                    redirect('Distributor/cPemesanan/create', 'refresh');
-                }
+                $data = array(
+                    'id' => $this->input->post('id'),
+                    'name' => $this->input->post('name'),
+                    'price' => $this->input->post('harga'),
+                    'qty' => $this->input->post('qty'),
+                    'stok' => $this->input->post('stok')
+                );
+                $this->cart->insert($data);
+                $this->session->set_flashdata('success', 'Bahan Jadi Berhasil Masuk Keranjang!');
+                redirect('Distributor/cPemesanan/create', 'refresh');
             }
         }
     }
@@ -118,32 +108,32 @@ class cPemesanan extends CI_Controller
         $this->protect->protect();
         //memasukkan data ke tabel transaksi pabrik ke supplier
         $data = array(
-            'id_tdistributor' => $this->input->post('id_transaksi'),
+            'id_invoiced' => $this->input->post('id_transaksi'),
             'id_user' => $this->input->post('id_user'),
-            'tgl_order' => date('Y-m-d'),
-            'total_bayar' => $this->input->post('total'),
-            'status_order' => '0'
+            'tgl_orderdistr' => date('Y-m-d'),
+            'total_bayardistr' => $this->input->post('total'),
+            'status_orderdistr' => '0'
         );
-        $this->db->insert('transaksi_distributor', $data);
+        $this->db->insert('invoice_distributor', $data);
 
         //memasukkan data ke tabel detail transaksi pabrik ke supplier
         foreach ($this->cart->contents() as $key => $value) {
             $detail = array(
-                'id_tdistributor' => $this->input->post('id_transaksi'),
-                'id_bahan_jadi' => $value['id'],
-                'qty' => $value['qty']
+                'id_invoiced' => $this->input->post('id_transaksi'),
+                'id_produk' => $value['id'],
+                'qty_produk' => $value['qty']
             );
-            $this->db->insert('detail_tdistributor', $detail);
+            $this->db->insert('detail_invoiced', $detail);
         }
 
         //mengurangi stok
         foreach ($this->cart->contents() as $key => $value) {
             $stok = array(
-                'id_bahan_jadi' => $value['id'],
+                'id_produk' => $value['id'],
                 'stok' => $value['stok'] - $value['qty']
             );
-            $this->db->where('id_bahan_jadi', $stok['id_bahan_jadi']);
-            $this->db->update('bahan_jadi', $stok);
+            $this->db->where('id_produk', $stok['id_produk']);
+            $this->db->update('produk', $stok);
         }
         $this->cart->destroy();
         $this->session->set_flashdata('success', 'Pesanan Anda Berhasil Dikirim!');
@@ -155,17 +145,17 @@ class cPemesanan extends CI_Controller
         $data = $this->mPesananDistributor->detail_pesanan($id);
         foreach ($data['pesanan'] as $key => $value) {
             $masuk = array(
-                'id_detail' => $value->id_detail,
-                'stokd' => $value->qty,
+                'id_detaild' => $value->id_detaild,
+                'stokd' => $value->qty_produk,
                 'tgl_masuk' => date('Y-m-d')
             );
-            $this->db->insert('bahan_dmasuk', $masuk);
+            $this->db->insert('produk_masukdistr', $masuk);
         }
         $status = array(
-            'status_order' => '4'
+            'status_orderdistr' => '4'
         );
-        $this->db->where('id_tdistributor', $id);
-        $this->db->update('transaksi_distributor', $status);
+        $this->db->where('id_invoiced', $id);
+        $this->db->update('invoice_distributor', $status);
         $this->session->set_flashdata('success', 'Pesanan Berhasil Diterima!');
         redirect('Distributor/cPemesanan');
     }

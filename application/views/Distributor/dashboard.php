@@ -41,7 +41,7 @@
                                 ?>
                                     <tr>
                                         <td><?= $no++ ?></td>
-                                        <td><?= $value->nm_bhn_jd ?></td>
+                                        <td><?= $value->nm_produk ?></td>
                                         <td><?= $value->deskripsi ?></td>
                                         <td>Rp.<?= number_format($value->harga)  ?></td>
                                         <td>

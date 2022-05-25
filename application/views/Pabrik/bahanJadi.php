@@ -45,12 +45,12 @@
                                 ?>
                                     <tr>
                                         <td><?= $no++ ?>.</td>
-                                        <td><?= $value->nm_bhn_jd ?></td>
+                                        <td><?= $value->nm_produk ?></td>
                                         <td><?= $value->deskripsi ?></td>
                                         <td>Rp. <?= number_format($value->harga, 0)  ?></td>
                                         <td><?= $value->stok ?></td>
-                                        <td><a href="<?= base_url('Pabrik/cBahanJadi/edit/' . $value->id_bahan_jadi) ?>" type="button" class="btn btn-success btn-sm">Update</a>
-                                            <a href="<?= base_url('Pabrik/cBahanJadi/delete/' . $value->id_bahan_jadi) ?>" type="button" class="btn btn-danger btn-sm">Delete</a>
+                                        <td><a href="<?= base_url('Pabrik/cBahanJadi/edit/' . $value->id_produk) ?>" type="button" class="btn btn-success btn-sm">Update</a>
+                                            <a href="<?= base_url('Pabrik/cBahanJadi/delete/' . $value->id_produk) ?>" type="button" class="btn btn-danger btn-sm">Delete</a>
                                         </td>
                                     </tr>
                                 <?php

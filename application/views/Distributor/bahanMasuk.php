@@ -42,7 +42,7 @@
                                 ?>
                                     <tr>
                                         <td><?= $no++ ?></td>
-                                        <td><?= $value->nm_bhn_jd ?></td>
+                                        <td><?= $value->nm_produk ?></td>
                                         <td><?= $value->tgl_masuk ?></td>
                                         <td><?php if ($value->stokd == '0') {
                                                 echo '<span class="badge badge-danger">Stok Habis!</span>';

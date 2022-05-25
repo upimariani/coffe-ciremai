@@ -43,7 +43,7 @@
                                 ?>
                                     <tr>
                                         <td><?= $no++ ?></td>
-                                        <td><?= $value->nama_bahan ?><br>
+                                        <td><?= $value->nm_bahanbaku ?><br>
                                             Quantity : <?= $value->stokpk ?></td>
                                         <td><?= $value->tgl_masuk ?></td>
                                         <td><?= $value->tgl_keluar ?></td>

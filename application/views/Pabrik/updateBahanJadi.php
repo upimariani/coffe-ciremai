@@ -18,10 +18,10 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Update Bahan Jadi</h4>
-                        <form action="<?= base_url('Pabrik/cBahanJadi/edit/' . $bahan->id_bahan_jadi) ?>" method="POST">
+                        <form action="<?= base_url('Pabrik/cBahanJadi/edit/' . $bahan->id_produk) ?>" method="POST">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nama Bahan Jadi</label>
-                                <input type="text" value="<?= $bahan->nm_bhn_jd ?>" name="nama" class="form-control" placeholder="Enter Nama">
+                                <input type="text" value="<?= $bahan->nm_produk ?>" name="nama" class="form-control" placeholder="Enter Nama">
                                 <?= form_error('nama', '<small id="emailHelp" class="form-text text-danger">', '</small>') ?>
                             </div>
                             <div class="form-group">

@@ -36,20 +36,20 @@ class cTransaksiDistributor extends CI_Controller
     public function konfirmasi_pembayaran($id)
     {
         $data = array(
-            'status_order' => '2'
+            'status_orderdistr' => '2'
         );
-        $this->db->where('id_tdistributor', $id);
-        $this->db->update('transaksi_distributor', $data);
+        $this->db->where('id_invoiced', $id);
+        $this->db->update('invoice_distributor', $data);
         $this->session->set_flashdata('success', 'Pesanan Distributor Berhasil Dikonfirmasi!');
         redirect('Pabrik/cTransaksiDistributor');
     }
     public function pesanan_dikirim($id)
     {
         $data = array(
-            'status_order' => '3'
+            'status_orderdistr' => '3'
         );
-        $this->db->where('id_tdistributor', $id);
-        $this->db->update('transaksi_distributor', $data);
+        $this->db->where('id_invoiced', $id);
+        $this->db->update('invoice_distributor', $data);
         $this->session->set_flashdata('success', 'Pesanan Distributor Segera Dikirim!');
         redirect('Pabrik/cTransaksiDistributor');
     }

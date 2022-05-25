@@ -21,25 +21,25 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Update Bahan Baku</h4>
-                        <form action="<?= base_url('Supplier/cBahanBaku/edit/' . $bahan->id_bahan) ?>" method="POST">
+                        <form action="<?= base_url('Supplier/cBahanBaku/edit/' . $bahan->id_bahanbaku) ?>" method="POST">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nama Bahan Baku</label>
-                                <input type="text" value="<?= $bahan->nama_bahan ?>" name="nama" class="form-control" placeholder="Enter Nama">
+                                <input type="text" value="<?= $bahan->nm_bahanbaku ?>" name="nama" class="form-control" placeholder="Enter Nama">
                                 <?= form_error('nama', '<small id="emailHelp" class="form-text text-danger">', '</small>') ?>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Deskripsi</label>
-                                <input type="text" value="<?= $bahan->deskripsi ?>" name="deskripsi" class="form-control" placeholder="Enter Deskripsi">
+                                <input type="text" value="<?= $bahan->deskripsi_bb ?>" name="deskripsi" class="form-control" placeholder="Enter Deskripsi">
                                 <?= form_error('deskripsi', '<small id="emailHelp" class="form-text text-danger">', '</small>') ?>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Harga</label>
-                                <input type="number" value="<?= $bahan->harga ?>" name="harga" class="form-control" placeholder="Enter Harga">
+                                <input type="number" value="<?= $bahan->harga_bb ?>" name="harga" class="form-control" placeholder="Enter Harga">
                                 <?= form_error('harga', '<small id="emailHelp" class="form-text text-danger">', '</small>') ?>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Stok</label>
-                                <input type="number" value="<?= $bahan->stok ?>" name="stok" class="form-control" placeholder="Enter Stok">
+                                <input type="number" value="<?= $bahan->stok_bb ?>" name="stok" class="form-control" placeholder="Enter Stok">
                                 <?= form_error('stok', '<small id="emailHelp" class="form-text text-danger">', '</small>') ?>
                             </div>
                             <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Submit</button>
