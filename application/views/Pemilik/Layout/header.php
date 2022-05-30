@@ -20,10 +20,15 @@
                 <div class="menu-inner">
                     <nav>
                         <ul class="metismenu" id="menu">
-                            <li <?php if ($this->uri->segment(1) == 'Pemilik' && $this->uri->segment(2) == 'cLaporan') {
-                                    echo 'class="active"';
-                                }  ?>><a href="<?= base_url('Pemilik/cLaporan') ?>"><i class="ti-dashboard"></i> <span>Laporan</span></a></li>
-
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-files"></i><span>Laporan</span></a>
+                                <ul class="collapse">
+                                    <li><a href="<?= base_url('Pemilik/cLaporan/pemesanan') ?>">Pemesanan Bahan Baku</a></li>
+                                    <li>
+                                        <<a href="<?= base_url('Pemilik/cLaporan') ?>">Bahan Baku Keluar</a>
+                                    </li>
+                                </ul>
+                            </li>
 
                             <li><a href="<?= base_url('cLogin/logout') ?>"><i class="ti-shift-right"></i> <span>LogOut</span></a></li>
 

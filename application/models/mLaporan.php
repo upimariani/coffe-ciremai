@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class mLaporan extends CI_Model
 {
 
-    //---------laporan biasa------------
+    //---------laporan barang keluar------------
     public function lap_harian($tanggal, $bulan, $tahun)
     {
         $this->db->select('*');
@@ -45,6 +45,39 @@ class mLaporan extends CI_Model
         $this->db->join('bahan_baku', 'bahan_baku.id_bahanbaku = detail_invoicep.id_bahanbaku', 'left');
         $this->db->join('user', 'invoice_pabrik.id_user = user.id_user', 'left');
         $this->db->where('YEAR(bb_keluarpabrik.tgl_keluar)', $tahun);
+        return $this->db->get()->result();
+    }
+
+    //---------laporan pemesanan bahan baku------------
+    public function lap_harian_pesanan($tanggal, $bulan, $tahun)
+    {
+        $this->db->select('*');
+        $this->db->from('invoice_pabrik');
+        $this->db->join('user', 'invoice_pabrik.id_user = user.id_user', 'left');
+
+        $this->db->where('DAY(tgl_orderpabrik)', $tanggal);
+        $this->db->where('MONTH(tgl_orderpabrik)', $bulan);
+        $this->db->where('YEAR(tgl_orderpabrik)', $tahun);
+        return $this->db->get()->result();
+    }
+
+    public function lap_bulanan_pesanan($bulan, $tahun)
+    {
+        $this->db->select('*');
+        $this->db->from('invoice_pabrik');
+        $this->db->join('user', 'invoice_pabrik.id_user = user.id_user', 'left');
+
+        $this->db->where('MONTH(tgl_orderpabrik)', $bulan);
+        $this->db->where('YEAR(tgl_orderpabrik)', $tahun);
+        return $this->db->get()->result();
+    }
+
+    public function lap_tahunan_pesanan($tahun)
+    {
+        $this->db->select('*');
+        $this->db->from('invoice_pabrik');
+        $this->db->join('user', 'invoice_pabrik.id_user = user.id_user', 'left');
+        $this->db->where('YEAR(tgl_orderpabrik)', $tahun);
         return $this->db->get()->result();
     }
 }

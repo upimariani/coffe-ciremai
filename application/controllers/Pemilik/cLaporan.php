@@ -62,6 +62,60 @@ class cLaporan extends CI_Controller
         $this->load->view('Pemilik/tahunan', $data);
         $this->load->view('Pemilik/Layout/footer');
     }
+
+    //laporan pemesanan
+    public function pemesanan()
+    {
+        $this->load->view('Pemilik/Layout/head');
+        $this->load->view('Pemilik/Layout/header');
+        $this->load->view('Pemilik/laporan_pesanan');
+        $this->load->view('Pemilik/Layout/footer');
+    }
+    public function lap_harian_pesanan()
+    {
+        $tanggal = $this->input->post('tanggal');
+        $bulan = $this->input->post('bulan');
+        $tahun = $this->input->post('tahun');
+
+        $data = array(
+            'tanggal' => $tanggal,
+            'bulan' => $bulan,
+            'tahun' => $tahun,
+            'laporan' => $this->mLaporan->lap_harian_pesanan($tanggal, $bulan, $tahun)
+        );
+        $this->load->view('Pemilik/Layout/head');
+        $this->load->view('Pemilik/Layout/header');
+        $this->load->view('Pemilik/harian_pesanan', $data);
+        $this->load->view('Pemilik/Layout/footer');
+    }
+    public function lap_bulanan_pesanan()
+    {
+        $bulan = $this->input->post('bulan');
+        $tahun = $this->input->post('tahun');
+
+        $data = array(
+            'bulan' => $bulan,
+            'tahun' => $tahun,
+            'laporan' => $this->mLaporan->lap_bulanan_pesanan($bulan, $tahun)
+        );
+        $this->load->view('Pemilik/Layout/head');
+        $this->load->view('Pemilik/Layout/header');
+        $this->load->view('Pemilik/bulanan_pesanan', $data);
+        $this->load->view('Pemilik/Layout/footer');
+    }
+    public function lap_tahunan_pesanan()
+    {
+        $tahun = $this->input->post('tahun');
+
+        $data = array(
+            'tahun' => $tahun,
+            'laporan' => $this->mLaporan->lap_tahunan_pesanan($tahun)
+        );
+        $this->load->view('Pemilik/Layout/head');
+        $this->load->view('Pemilik/Layout/header');
+        $this->load->view('Pemilik/tahunan_pesanan', $data);
+        $this->load->view('Pemilik/Layout/footer');
+    }
 }
 
 /* End of file cLaporan.php */
