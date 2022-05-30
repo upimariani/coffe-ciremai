@@ -6,7 +6,7 @@
                 <h4 class="page-title pull-left">Bahan Baku</h4>
 
             </div>
-            <a href="<?= base_url('Supplier/cBahanBaku/create') ?>">Create Bahan Baku</a>
+            <a href="<?= base_url('Supplier/cBahanBaku/create') ?>">Create Bahan Baku</a> | <a href="<?= base_url('Supplier/cBahanBaku/update_stok') ?>">Update Stok Bahan Baku</a>
         </div>
     </div>
     <?php

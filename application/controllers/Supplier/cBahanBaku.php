@@ -83,6 +83,34 @@ class cBahanBaku extends CI_Controller
         $this->session->set_flashdata('success', 'Data Bahan Baku Berhasil Dihapus!');
         redirect('Supplier/cBahanBaku');
     }
+    //update stok bahan baku supplier
+    public function update_stok()
+    {
+        $this->form_validation->set_rules('id_bb', 'Bahan Baku', 'required');
+        $this->form_validation->set_rules('stok', 'Stok Sebelumnya', 'required');
+        $this->form_validation->set_rules('qty', 'Quantity', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'bahan_baku' => $this->mBahanBaku->select()
+            );
+            $this->load->view('Supplier/Layout/head');
+            $this->load->view('Supplier/Layout/header');
+            $this->load->view('Supplier/updateStokBB', $data);
+            $this->load->view('Supplier/Layout/footer');
+        } else {
+            $stok = $this->input->post('stok');
+            $qty = $this->input->post('qty');
+            $total = $stok + $qty;
+            $data = array(
+                'id_bahanbaku' => $this->input->post('id_bb'),
+                'stok_bb' => $total
+            );
+            $this->mBahanBaku->update($data['id_bahanbaku'], $data);
+            $this->session->set_flashdata('success', 'Stok Bahan Baku Berhasil Diperbaharui!');
+            redirect('Supplier/cBahanBaku');
+        }
+    }
 }
 
 /* End of file Controllername.php */

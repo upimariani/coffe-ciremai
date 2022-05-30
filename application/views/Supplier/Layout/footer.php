@@ -32,6 +32,15 @@
         });
     }, 3000)
 </script>
+<script>
+    console.log = function() {}
+    $("#stok-bb").on('change', function() {
+
+        $(".stok").html($(this).find(':selected').attr('data-stok'));
+        $(".stok").val($(this).find(':selected').attr('data-stok'));
+
+    });
+</script>
 </body>
 
 </html>
