@@ -20,7 +20,6 @@ class cDashboard extends CI_Controller
         $this->load->view('Distributor/Layout/head');
         $this->load->view('Distributor/Layout/header');
         $this->load->view('Distributor/dashboard', $data);
-        $this->load->view('Distributor/Layout/footer');
     }
 }
 

@@ -9,7 +9,7 @@
 
     </div>
     <div class="alert alert-success" role="alert">
-        <strong>Sukses!</strong> Selamat Datang Supplier!
+        <strong>Sukses!</strong> Selamat Datang Distributor!
     </div>
 </div>
 <!-- page title area end -->
@@ -17,66 +17,108 @@
     <!-- sales report area start -->
     <div class="sales-report-area sales-style-two">
         <div class="row">
-
-            <!-- visitor graph area end -->
-            <!-- order list area start -->
-            <div class="card mt-5">
-                <div class="card-body">
-                    <h4 class="header-title">Informasi Stok Bahan Baku Supplier</h4>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Nama Bahan Baku</th>
-                                    <th>Deskripsi</th>
-                                    <th>Harga</th>
-                                    <th>Stok</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $no = 1;
-                                foreach ($bahan_jadi as $key => $value) {
-                                ?>
+            <div class="col-lg-6">
+                <?php
+                foreach ($bahan_jadi as $key => $value) {
+                    if ($value->stok <= 20) {
+                ?>
+                        <div class="alert alert-danger" role="alert">
+                            <strong><?= $value->nm_produk ?> Stok <?= $value->stok ?>!</strong> Segera Melakukan Pemesanan
+                        </div>
+                <?php
+                    }
+                }
+                ?>
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h4 class="header-title">Informasi Stok Bahan Baku Supplier</h4>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <td><?= $no++ ?></td>
-                                        <td><?= $value->nm_produk ?></td>
-                                        <td><?= $value->deskripsi ?></td>
-                                        <td>Rp.<?= number_format($value->harga)  ?></td>
-                                        <td>
-                                            <?php
-                                            if ($value->stok <= '2') {
-                                            ?>
-                                                <span class="text-danger"><?= $value->stok ?><i class="ti-arrow-down"></i></span>
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <span class="text-success"><?= $value->stok ?><i class="ti-arrow-up"></i></span>
-                                            <?php
-                                            }
-                                            ?>
-
-                                        </td>
+                                        <th>No.</th>
+                                        <th>Nama Bahan Baku</th>
+                                        <th>Deskripsi</th>
+                                        <th>Harga</th>
+                                        <th>Stok</th>
                                     </tr>
-                                <?php
-                                }
-                                ?>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $no = 1;
+                                    foreach ($bahan_jadi as $key => $value) {
+                                    ?>
+                                        <tr>
+                                            <td><?= $no++ ?></td>
+                                            <td><?= $value->nm_produk ?></td>
+                                            <td><?= $value->deskripsi ?></td>
+                                            <td>Rp.<?= number_format($value->harga)  ?></td>
+                                            <td>
+                                                <?php
+                                                if ($value->stok <= '20') {
+                                                ?>
+                                                    <span class="text-danger"><?= $value->stok ?><i class="ti-arrow-down"></i></span>
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <span class="text-success"><?= $value->stok ?><i class="ti-arrow-up"></i></span>
+                                                <?php
+                                                }
+                                                ?>
 
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="pagination_area pull-right mt-5">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-                        </ul>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pagination_area pull-right mt-5">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- visitor graph area end -->
+            <!-- order list area start -->
+
 
         </div>
     </div>
-    <!-- main content area end -->
+
+    <!-- footer area end-->
+</div>
+<!-- page container area end -->
+<!-- offset area start -->
+
+<!-- offset area end -->
+<!-- jquery latest version -->
+<script src="<?= base_url('asset/srtdash/srtdash/') ?>assets/js/vendor/jquery-2.2.4.min.js"></script>
+<!-- bootstrap 4 js -->
+<script src="<?= base_url('asset/srtdash/srtdash/') ?>assets/js/popper.min.js"></script>
+<script src="<?= base_url('asset/srtdash/srtdash/') ?>assets/js/bootstrap.min.js"></script>
+<script src="<?= base_url('asset/srtdash/srtdash/') ?>assets/js/owl.carousel.min.js"></script>
+<script src="<?= base_url('asset/srtdash/srtdash/') ?>assets/js/metisMenu.min.js"></script>
+<script src="<?= base_url('asset/srtdash/srtdash/') ?>assets/js/jquery.slimscroll.min.js"></script>
+<script src="<?= base_url('asset/srtdash/srtdash/') ?>assets/js/jquery.slicknav.min.js"></script>
+
+
+<!-- Start datatable js -->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+<!-- others plugins -->
+<script src="<?= base_url('asset/srtdash/srtdash/') ?>assets/js/plugins.js"></script>
+<script src="<?= base_url('asset/srtdash/srtdash/') ?>assets/js/scripts.js"></script>
+</body>
+
+</html>

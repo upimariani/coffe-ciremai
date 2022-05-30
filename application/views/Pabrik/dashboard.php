@@ -28,7 +28,7 @@
                     if ($value->stok <= 20) {
                 ?>
                         <div class="alert alert-danger" role="alert">
-                            <strong><?= $value->nm_bahanbaku ?>!</strong> Segera Melakukan Pemesanan
+                            <strong><?= $value->nm_bahanbaku ?> Stok <?= $value->stok ?>!</strong> Segera Melakukan Pemesanan
                         </div>
                 <?php
                     }
@@ -100,7 +100,7 @@
                     if ($value->stok <= 20) {
                 ?>
                         <div class="alert alert-danger" role="alert">
-                            <strong><?= $value->nm_produk ?>!</strong> Segera Melakukan Pemesanan
+                            <strong><?= $value->nm_produk ?> Stok <?= $value->stok ?>!</strong> Segera Melakukan Pemesanan
                         </div>
                 <?php
                     }
