@@ -132,7 +132,8 @@ class cPemesanan extends CI_Controller
             'tgl_orderpabrik' => date('Y-m-d'),
             'total_bayarpabrik' => $this->input->post('total'),
             'status_orderpabrik' => '0',
-            'supplier' => $this->input->post('supplier')
+            'supplier' => $this->input->post('supplier'),
+            'bts_bayarp' => $this->input->post('tgl')
         );
         $this->db->insert('invoice_pabrik', $data);
 

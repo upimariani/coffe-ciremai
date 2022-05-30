@@ -48,6 +48,11 @@
                                 if ($detail['transaksi']->status_orderdistr == '0') {
                                 ?>
                                     <p>Silahkan Upload Bukti Pembayaran*</p>
+                                    <p>Transfer Via Bank BRI <strong>051601044996509</strong></p>
+                                    <hr>
+                                    <p>Batas Pembayaran s/d <?= $detail['transaksi']->bts_bayard ?></p>
+                                    <small class="text-danger">*Catatan : Jika pembayaran belum dilakukan hingga batas waktu yang ditentukan maka, pemesanan akan dibatalkan secara otomatis</small>
+
                                     <?php echo form_open_multipart('Distributor/cPemesanan/detail_pesanan/' . $detail['transaksi']->id_invoiced); ?>
                                     <input type="file" name="bukti" class="form-control">
                                     <button type="submit" class="btn btn-warning mt-2 btn-sm">Upload</button>
@@ -84,7 +89,7 @@
                                         <tr>
                                             <td class="text-center"><?= $no++ ?></td>
                                             <td class="text-left"><?= $value->nm_produk ?></td>
-                                            <td><?= $value->qty_produk ?></td>
+                                            <td><?= $value->qty_produk ?> pcs</td>
                                             <td>Rp. <?= number_format($value->harga, 0) ?></td>
                                             <td>Rp. <?= number_format($value->harga * $value->qty_produk) ?></td>
                                         </tr>

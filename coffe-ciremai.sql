@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Bulan Mei 2022 pada 01.09
+-- Waktu pembuatan: 30 Bulan Mei 2022 pada 14.28
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.9
 
@@ -42,11 +42,11 @@ CREATE TABLE `bahan_baku` (
 --
 
 INSERT INTO `bahan_baku` (`id_bahanbaku`, `id_user`, `nm_bahanbaku`, `deskripsi_bb`, `harga_bb`, `stok_bb`) VALUES
-(1, 1, 'Biji Kopi Robusta', 'Coffea Canephora', '25000', 47),
-(2, 5, 'Biji Kopi Arabika', 'Coffea Arabica', '30000', 8),
-(3, 1, 'Biji Kopi Ekspreso', 'Ekspreso', '30000', 80),
-(5, 5, 'Gula Merah', 'Brown Sugar Premium', '14000', 35),
-(6, 5, 'Susu Creamer', 'Full Cream Ultra', '17000', 12);
+(1, 1, 'Biji Kopi Robusta', 'Coffea Canephora', '25000', 45),
+(2, 5, 'Biji Kopi Arabika', 'Coffea Arabica', '30000', 6),
+(3, 1, 'Biji Kopi Ekspreso', 'Ekspreso', '30000', 77),
+(5, 5, 'Gula Merah', 'Brown Sugar Premium', '14000', 33),
+(6, 5, 'Susu Creamer', 'Full Cream Ultra', '17000', 10);
 
 -- --------------------------------------------------------
 
@@ -70,7 +70,8 @@ INSERT INTO `bb_keluarpabrik` (`id_bbkeluarp`, `id_bbmasukp`, `tgl_keluar`, `sto
 (1, 1, '2022-05-09', 2, '2022-05-09 02:06:26'),
 (2, 3, '2022-05-09', 1, '2022-05-09 02:06:37'),
 (3, 2, '2022-05-09', 6, '2022-05-09 02:06:46'),
-(4, 6, '2022-05-26', 2, '2022-05-25 22:56:43');
+(4, 6, '2022-05-26', 2, '2022-05-25 22:56:43'),
+(5, 1, '2022-05-30', 1, '2022-05-30 10:34:12');
 
 -- --------------------------------------------------------
 
@@ -91,7 +92,7 @@ CREATE TABLE `bb_masukpabrik` (
 --
 
 INSERT INTO `bb_masukpabrik` (`id_bbmasukp`, `id_detailp`, `tgl_masuk`, `stokp`, `time`) VALUES
-(1, 3, '2022-05-09', 3, '2022-05-09 02:05:51'),
+(1, 3, '2022-05-09', 2, '2022-05-09 02:05:51'),
 (2, 4, '2022-05-09', 11, '2022-05-09 02:05:51'),
 (3, 5, '2022-05-09', 2, '2022-05-09 02:05:51'),
 (4, 1, '2022-05-09', 3, '2022-05-09 02:05:57'),
@@ -122,7 +123,9 @@ INSERT INTO `detail_invoiced` (`id_detaild`, `id_invoiced`, `id_produk`, `qty_pr
 (3, '20220509MRGDH5T6', 2, 12),
 (4, '20220509MRGDH5T6', 3, 5),
 (5, '202205263I4ZVL5X', 1, 5),
-(6, '202205263I4ZVL5X', 3, 5);
+(6, '202205263I4ZVL5X', 3, 5),
+(7, '20220530ZBTUANF8', 1, 2),
+(8, '20220530ZBTUANF8', 3, 2);
 
 -- --------------------------------------------------------
 
@@ -148,7 +151,12 @@ INSERT INTO `detail_invoicep` (`id_detailp`, `id_invoicep`, `id_bahanbaku`, `qty
 (4, '20220509RZYJCMHL', 5, 17),
 (5, '20220509RZYJCMHL', 6, 3),
 (6, '20220526MVSGOFA7', 5, 4),
-(7, '20220526MVSGOFA7', 6, 5);
+(7, '20220526MVSGOFA7', 6, 5),
+(8, '20220530NMLU7FE5', 1, 2),
+(9, '20220530NMLU7FE5', 3, 3),
+(10, '20220530L8BNWUYS', 5, 2),
+(11, '20220530L8BNWUYS', 6, 2),
+(12, '20220530DQGZPCOU', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -162,17 +170,18 @@ CREATE TABLE `invoice_distributor` (
   `tgl_orderdistr` varchar(15) NOT NULL,
   `total_bayardistr` varchar(15) NOT NULL,
   `status_orderdistr` int(11) NOT NULL,
-  `bukti_bayardistr` text NOT NULL
+  `bukti_bayardistr` text NOT NULL,
+  `bts_bayard` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `invoice_distributor`
 --
 
-INSERT INTO `invoice_distributor` (`id_invoiced`, `id_user`, `tgl_orderdistr`, `total_bayardistr`, `status_orderdistr`, `bukti_bayardistr`) VALUES
-('20220509L7X1BM4G', 4, '2022-05-09', '565000', 4, 'gambar.gif'),
-('20220509MRGDH5T6', 6, '2022-05-09', '1240000', 4, 'download.jpg'),
-('202205263I4ZVL5X', 4, '2022-05-26', '725000', 4, 'gambar1.gif');
+INSERT INTO `invoice_distributor` (`id_invoiced`, `id_user`, `tgl_orderdistr`, `total_bayardistr`, `status_orderdistr`, `bukti_bayardistr`, `bts_bayard`) VALUES
+('20220509L7X1BM4G', 4, '2022-05-09', '565000', 4, 'gambar.gif', '2022-04-19'),
+('20220509MRGDH5T6', 6, '2022-05-09', '1240000', 4, 'download.jpg', '2022-04-19'),
+('20220530ZBTUANF8', 4, '2022-05-30', '290000', 0, '', '2022-05-31');
 
 -- --------------------------------------------------------
 
@@ -187,17 +196,20 @@ CREATE TABLE `invoice_pabrik` (
   `total_bayarpabrik` varchar(20) NOT NULL,
   `status_orderpabrik` int(11) NOT NULL,
   `bukti_bayarpabrik` text NOT NULL,
-  `supplier` int(11) NOT NULL
+  `supplier` int(11) NOT NULL,
+  `bts_bayarp` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `invoice_pabrik`
 --
 
-INSERT INTO `invoice_pabrik` (`id_invoicep`, `id_user`, `tgl_orderpabrik`, `total_bayarpabrik`, `status_orderpabrik`, `bukti_bayarpabrik`, `supplier`) VALUES
-('20220509A8GUJVH3', 2, '2022-05-09', '675000', 4, 'download1.jpg', 1),
-('20220509RZYJCMHL', 2, '2022-05-09', '439000', 4, 'download.jpg', 5),
-('20220526MVSGOFA7', 2, '2022-05-26', '141000', 4, 'download2.jpg', 5);
+INSERT INTO `invoice_pabrik` (`id_invoicep`, `id_user`, `tgl_orderpabrik`, `total_bayarpabrik`, `status_orderpabrik`, `bukti_bayarpabrik`, `supplier`, `bts_bayarp`) VALUES
+('20220509A8GUJVH3', 2, '2022-05-09', '675000', 4, 'download1.jpg', 1, '2022-04-19'),
+('20220509RZYJCMHL', 2, '2022-05-09', '439000', 4, 'download.jpg', 5, '2022-04-19'),
+('20220526MVSGOFA7', 2, '2022-05-26', '141000', 3, 'download2.jpg', 5, '2022-04-19'),
+('20220530DQGZPCOU', 2, '2022-05-30', '60000', 0, '', 5, '2022-05-31'),
+('20220530L8BNWUYS', 2, '2022-05-30', '62000', 0, '', 5, '2022-05-31');
 
 -- --------------------------------------------------------
 
@@ -218,9 +230,9 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id_produk`, `nm_produk`, `deskripsi`, `harga`, `stok`) VALUES
-(1, 'Bubuk Kopi Arabika', 'Arabika coffe', '65000', 5),
+(1, 'Bubuk Kopi Arabika', 'Arabika coffe', '65000', 3),
 (2, 'Bubuk Coffe Robusta', 'Robusta Coffe', '70000', 8),
-(3, 'Bubuk Coffe Ekspreso', 'Ekspreso Coffe', '80000', 5);
+(3, 'Bubuk Coffe Ekspreso', 'Ekspreso Coffe', '80000', 3);
 
 -- --------------------------------------------------------
 
@@ -383,7 +395,7 @@ ALTER TABLE `bahan_baku`
 -- AUTO_INCREMENT untuk tabel `bb_keluarpabrik`
 --
 ALTER TABLE `bb_keluarpabrik`
-  MODIFY `id_bbkeluarp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_bbkeluarp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `bb_masukpabrik`
@@ -395,13 +407,13 @@ ALTER TABLE `bb_masukpabrik`
 -- AUTO_INCREMENT untuk tabel `detail_invoiced`
 --
 ALTER TABLE `detail_invoiced`
-  MODIFY `id_detaild` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_detaild` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_invoicep`
 --
 ALTER TABLE `detail_invoicep`
-  MODIFY `id_detailp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_detailp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `produk`

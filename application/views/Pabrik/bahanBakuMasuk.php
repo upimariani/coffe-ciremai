@@ -40,7 +40,7 @@
                                                 echo '<span class="badge badge-danger">Stok Habis!</span>';
                                             } else {
                                             ?>
-                                                <?= $value->stokp ?>
+                                                <?= $value->stokp . ' kg' ?>
                                             <?php
                                             }
                                             ?>

@@ -21,7 +21,6 @@ class cDashboard extends CI_Controller
         $this->load->view('Pabrik/Layout/head');
         $this->load->view('Pabrik/Layout/header');
         $this->load->view('Pabrik/dashboard', $data);
-        $this->load->view('Pabrik/Layout/footer');
     }
 }
 

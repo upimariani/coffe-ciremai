@@ -48,7 +48,7 @@
                                         <td><?= $value->nm_bahanbaku ?></td>
                                         <td><?= $value->deskripsi_bb ?></td>
                                         <td>Rp. <?= number_format($value->harga_bb, 0)  ?></td>
-                                        <td><?= $value->stok_bb ?></td>
+                                        <td><?= $value->stok_bb ?> kg</td>
                                         <td><a href="<?= base_url('Supplier/cBahanBaku/edit/' . $value->id_bahanbaku) ?>" type="button" class="btn btn-success btn-sm">Update</a>
                                             <a href="<?= base_url('Supplier/cBahanBaku/delete/' . $value->id_bahanbaku) ?>" type="button" class="btn btn-danger btn-sm">Delete</a>
                                         </td>

@@ -34,7 +34,7 @@
                                     <tr>
                                         <td><?= $no++ ?></td>
                                         <td><?= $value->nm_bahanbaku ?></td>
-                                        <td>Qty :<?= $value->stok ?></td>
+                                        <td>Qty :<?= $value->stok ?> kg</td>
                                     </tr>
                                 <?php
                                 }

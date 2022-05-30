@@ -128,6 +128,12 @@
                                     <form action="<?= base_url('Distributor/cPemesanan/order') ?>" method="POST">
                                         <?php $id_transaksi = date('Ymd') . strtoupper(random_string('alnum', 8));
                                         ?>
+                                        <?php
+                                        $tgl1 = date('Y-m-d'); // pendefinisian tanggal awal
+                                        $tgl2 = date('Y-m-d', strtotime('+1 days', strtotime($tgl1))); //operasi penjumlahan tanggal sebanyak 6 hari
+
+                                        ?>
+                                        <input type="hidden" name="tgl" value="<?= $tgl2 ?>">
                                         <input type="hidden" name="id_transaksi" value="<?= $id_transaksi ?>">
                                         <input type="hidden" name="total" value="<?= $this->cart->total() ?>">
                                         <input type="hidden" name="id_user" value="<?= $this->session->userdata('id') ?>">

@@ -43,11 +43,11 @@
                                     <tr>
                                         <td><?= $no++ ?></td>
                                         <td><?= $value->nm_produk ?></td>
-                                        <td><?= $value->tgl_masuk ?></td>
+                                        <td><?= $value->tgl_masuk ?> pcs</td>
                                         <td><?php if ($value->stokd == '0') {
                                                 echo '<span class="badge badge-danger">Stok Habis!</span>';
                                             } else {
-                                                echo $value->stokd;
+                                                echo $value->stokd . 'pcs';
                                             } ?></td>
                                         <td>Rp. <?= number_format($value->harga, 0)  ?></td>
                                     </tr>

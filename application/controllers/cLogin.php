@@ -44,6 +44,24 @@ class cLogin extends CI_Controller
     }
     public function logout()
     {
+        $data = $this->mLogin->batas_bayar();
+        foreach ($data['pabrik'] as $key => $value) {
+            $id_pabrik = $value->id_invoicep;
+            $this->db->where('id_invoicep', $id_pabrik);
+            $this->db->delete('invoice_pabrik');
+
+            $this->db->where('id_invoicep', $id_pabrik);
+            $this->db->delete('detail_invoicep');
+        }
+
+        foreach ($data['distributor'] as $key => $value) {
+            $id_distr = $value->id_invoiced;
+            $this->db->where('id_invoiced', $id_distr);
+            $this->db->delete('invoice_distributor');
+
+            $this->db->where('id_invoiced', $id_pabrik);
+            $this->db->delete('detail_invoiced');
+        }
         $this->cart->destroy();
         $this->session->unset_userdata('id');
         $this->session->unset_userdata('level');

@@ -79,7 +79,7 @@
                                         <tr>
                                             <td class="text-center"><?= $no++ ?></td>
                                             <td class="text-left"><?= $value->nm_produk ?></td>
-                                            <td><?= $value->qty_produk ?></td>
+                                            <td><?= $value->qty_produk ?> pcs</td>
                                             <td>Rp. <?= number_format($value->harga, 0) ?></td>
                                             <td>Rp. <?= number_format($value->harga * $value->qty_produk) ?></td>
                                         </tr>

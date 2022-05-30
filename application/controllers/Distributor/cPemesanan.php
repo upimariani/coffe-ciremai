@@ -112,7 +112,8 @@ class cPemesanan extends CI_Controller
             'id_user' => $this->input->post('id_user'),
             'tgl_orderdistr' => date('Y-m-d'),
             'total_bayardistr' => $this->input->post('total'),
-            'status_orderdistr' => '0'
+            'status_orderdistr' => '0',
+            'bts_bayard' => $this->input->post('tgl')
         );
         $this->db->insert('invoice_distributor', $data);
 

@@ -44,7 +44,7 @@
                                     <tr>
                                         <td><?= $no++ ?></td>
                                         <td><?= $value->nm_bahanbaku ?><br>
-                                            Quantity : <?= $value->stokpk ?></td>
+                                            Quantity : <?= $value->stokpk ?> kg</td>
                                         <td><?= $value->tgl_masuk ?></td>
                                         <td><?= $value->tgl_keluar ?></td>
 

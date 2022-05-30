@@ -39,10 +39,11 @@
                             <input type="hidden" name="price" class="harga">
                             <input type="hidden" name="stok" class="stok">
                             <input type="hidden" name="name" class="nama">
+
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nama Bahan Baku</label>
                                 <select id="bahan-baku" name="id" class="form-control">
-                                    <option>---Pilih Bahan Baku---</option>
+                                    <option value=" ">---Pilih Bahan Baku---</option>
                                     <?php
                                     foreach ($bahan_baku as $key => $value) {
                                     ?>
@@ -52,7 +53,7 @@
                                     ?>
 
                                 </select>
-                                <?= form_error('nama', '<small id="emailHelp" class="form-text text-danger">', '</small>') ?>
+                                <?= form_error('id', '<small id="emailHelp" class="form-text text-danger">', '</small>') ?>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Harga</label>
@@ -132,6 +133,12 @@
                                     <form action="<?= base_url('Pabrik/cPemesanan/order') ?>" method="POST">
                                         <?php $id_transaksi = date('Ymd') . strtoupper(random_string('alnum', 8));
                                         ?>
+                                        <?php
+                                        $tgl1 = date('Y-m-d'); // pendefinisian tanggal awal
+                                        $tgl2 = date('Y-m-d', strtotime('+1 days', strtotime($tgl1))); //operasi penjumlahan tanggal sebanyak 6 hari
+
+                                        ?>
+                                        <input type="hidden" name="tgl" value="<?= $tgl2 ?>">
                                         <input type="hidden" name="supplier" value="<?= $supplier ?>">
                                         <input type="hidden" name="id_transaksi" value="<?= $id_transaksi ?>">
                                         <input type="hidden" name="total" value="<?= $this->cart->total() ?>">

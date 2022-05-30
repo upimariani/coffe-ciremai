@@ -78,7 +78,7 @@
                                         <tr>
                                             <td class="text-center"><?= $no++ ?></td>
                                             <td class="text-left"><?= $value->nm_bahanbaku ?></td>
-                                            <td><?= $value->qty_bb ?></td>
+                                            <td><?= $value->qty_bb ?> kg</td>
                                             <td>Rp. <?= number_format($value->harga_bb, 0) ?></td>
                                             <td>Rp. <?= number_format($value->harga_bb * $value->qty_bb) ?></td>
                                         </tr>
