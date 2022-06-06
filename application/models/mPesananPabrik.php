@@ -32,6 +32,9 @@ class mPesananPabrik extends CI_Model
     {
         $data['pesanan'] = $this->db->query("SELECT * FROM `invoice_pabrik` JOIN detail_invoicep ON invoice_pabrik.id_invoicep = detail_invoicep.id_invoicep JOIN bahan_baku ON detail_invoicep.id_bahanbaku = bahan_baku.id_bahanbaku WHERE invoice_pabrik.id_invoicep='" . $id . "'")->result();
         $data['transaksi'] = $this->db->query("SELECT * FROM `invoice_pabrik` JOIN user ON invoice_pabrik.id_user=user.id_user WHERE id_invoicep='" . $id . "'")->row();
+
+        //detail supplier
+        $data['supplier'] = $this->db->query("SELECT * FROM `invoice_pabrik` JOIN user ON invoice_pabrik.supplier = user.id_user WHERE id_invoicep='" . $id . "'")->row();
         return $data;
     }
 

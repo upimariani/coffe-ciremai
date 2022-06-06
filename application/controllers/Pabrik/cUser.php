@@ -31,6 +31,7 @@ class cUser extends CI_Controller
         $this->form_validation->set_rules('username', 'Username', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('level', 'Level User', 'required');
+        $this->form_validation->set_rules('no_rek', 'No Rekening', 'required');
 
 
         if ($this->form_validation->run() == FALSE) {
@@ -45,7 +46,8 @@ class cUser extends CI_Controller
                 'no_hp' => $this->input->post('no_hp'),
                 'username' => $this->input->post('username'),
                 'password' => $this->input->post('password'),
-                'level_user' => $this->input->post('level')
+                'level_user' => $this->input->post('level'),
+                'no_rek' => $this->input->post('no_rek')
             );
             $this->mUser->insert($data);
             $this->session->set_flashdata('success', 'Data User Berhasil Disimpan!');
@@ -60,6 +62,7 @@ class cUser extends CI_Controller
         $this->form_validation->set_rules('username', 'Username', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('level', 'Level User', 'required');
+        $this->form_validation->set_rules('no_rek', 'No Rekening', 'required');
         if ($this->form_validation->run() == FALSE) {
             $data = array(
                 'user' => $this->mUser->edit($id)
@@ -75,7 +78,8 @@ class cUser extends CI_Controller
                 'no_hp' => $this->input->post('no_hp'),
                 'username' => $this->input->post('username'),
                 'password' => $this->input->post('password'),
-                'level_user' => $this->input->post('level')
+                'level_user' => $this->input->post('level'),
+                'no_rek' => $this->input->post('no_rek')
             );
             $this->mUser->update($id, $data);
             $this->session->set_flashdata('success', 'Data User Berhasil Diperbaharui!');

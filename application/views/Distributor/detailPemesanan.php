@@ -48,7 +48,7 @@
                                 if ($detail['transaksi']->status_orderdistr == '0') {
                                 ?>
                                     <p>Silahkan Upload Bukti Pembayaran*</p>
-                                    <p>Transfer Via Bank BRI <strong>051601044996509</strong></p>
+                                    <p>Transfer Via Bank <?= $detail['pabrik']->nm_bank ?> <strong><?= $detail['pabrik']->no_rek ?></strong></p>
                                     <hr>
                                     <p>Batas Pembayaran s/d <?= $detail['transaksi']->bts_bayard ?></p>
                                     <small class="text-danger">*Catatan : Jika pembayaran belum dilakukan hingga batas waktu yang ditentukan maka, pemesanan akan dibatalkan secara otomatis</small>

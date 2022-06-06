@@ -35,6 +35,11 @@
                                 <?= form_error('no_hp', '<small id="emailHelp" class="form-text text-danger">', '</small>') ?>
                             </div>
                             <div class="form-group">
+                                <label for="exampleInputEmail1">No Rekening*</label>
+                                <input type="number" value="<?= $user->no_rek  ?>" name="no_rek" class="form-control" placeholder="Enter No Rekening">
+                                <?= form_error('no_rek', '<small id="emailHelp" class="form-text text-danger">', '</small>') ?>
+                            </div>
+                            <div class="form-group">
                                 <label for="exampleInputPassword1">Username*</label>
                                 <input type="text" value="<?= $user->username ?>" name="username" class="form-control" placeholder="Enter Username">
                                 <?= form_error('username', '<small id="emailHelp" class="form-text text-danger">', '</small>') ?>

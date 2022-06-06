@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Bulan Mei 2022 pada 14.28
+-- Waktu pembuatan: 07 Jun 2022 pada 00.41
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.9
 
@@ -44,7 +44,7 @@ CREATE TABLE `bahan_baku` (
 INSERT INTO `bahan_baku` (`id_bahanbaku`, `id_user`, `nm_bahanbaku`, `deskripsi_bb`, `harga_bb`, `stok_bb`) VALUES
 (1, 1, 'Biji Kopi Robusta', 'Coffea Canephora', '25000', 45),
 (2, 5, 'Biji Kopi Arabika', 'Coffea Arabica', '30000', 6),
-(3, 1, 'Biji Kopi Ekspreso', 'Ekspreso', '30000', 77),
+(3, 1, 'Biji Kopi Ekspreso', 'Ekspreso', '30000', 80),
 (5, 5, 'Gula Merah', 'Brown Sugar Premium', '14000', 33),
 (6, 5, 'Susu Creamer', 'Full Cream Ultra', '17000', 10);
 
@@ -125,7 +125,9 @@ INSERT INTO `detail_invoiced` (`id_detaild`, `id_invoiced`, `id_produk`, `qty_pr
 (5, '202205263I4ZVL5X', 1, 5),
 (6, '202205263I4ZVL5X', 3, 5),
 (7, '20220530ZBTUANF8', 1, 2),
-(8, '20220530ZBTUANF8', 3, 2);
+(8, '20220530ZBTUANF8', 3, 2),
+(9, '20220607LYQF4NOK', 2, 2),
+(10, '20220607LYQF4NOK', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -153,10 +155,7 @@ INSERT INTO `detail_invoicep` (`id_detailp`, `id_invoicep`, `id_bahanbaku`, `qty
 (6, '20220526MVSGOFA7', 5, 4),
 (7, '20220526MVSGOFA7', 6, 5),
 (8, '20220530NMLU7FE5', 1, 2),
-(9, '20220530NMLU7FE5', 3, 3),
-(10, '20220530L8BNWUYS', 5, 2),
-(11, '20220530L8BNWUYS', 6, 2),
-(12, '20220530DQGZPCOU', 2, 2);
+(9, '20220530NMLU7FE5', 3, 3);
 
 -- --------------------------------------------------------
 
@@ -181,7 +180,7 @@ CREATE TABLE `invoice_distributor` (
 INSERT INTO `invoice_distributor` (`id_invoiced`, `id_user`, `tgl_orderdistr`, `total_bayardistr`, `status_orderdistr`, `bukti_bayardistr`, `bts_bayard`) VALUES
 ('20220509L7X1BM4G', 4, '2022-05-09', '565000', 4, 'gambar.gif', '2022-04-19'),
 ('20220509MRGDH5T6', 6, '2022-05-09', '1240000', 4, 'download.jpg', '2022-04-19'),
-('20220530ZBTUANF8', 4, '2022-05-30', '290000', 0, '', '2022-05-31');
+('20220607LYQF4NOK', 4, '2022-06-07', '270000', 0, '', '2022-06-08');
 
 -- --------------------------------------------------------
 
@@ -207,9 +206,7 @@ CREATE TABLE `invoice_pabrik` (
 INSERT INTO `invoice_pabrik` (`id_invoicep`, `id_user`, `tgl_orderpabrik`, `total_bayarpabrik`, `status_orderpabrik`, `bukti_bayarpabrik`, `supplier`, `bts_bayarp`) VALUES
 ('20220509A8GUJVH3', 2, '2022-05-09', '675000', 4, 'download1.jpg', 1, '2022-04-19'),
 ('20220509RZYJCMHL', 2, '2022-05-09', '439000', 4, 'download.jpg', 5, '2022-04-19'),
-('20220526MVSGOFA7', 2, '2022-05-26', '141000', 3, 'download2.jpg', 5, '2022-04-19'),
-('20220530DQGZPCOU', 2, '2022-05-30', '60000', 0, '', 5, '2022-05-31'),
-('20220530L8BNWUYS', 2, '2022-05-30', '62000', 0, '', 5, '2022-05-31');
+('20220526MVSGOFA7', 2, '2022-05-26', '141000', 3, 'download2.jpg', 5, '2022-04-19');
 
 -- --------------------------------------------------------
 
@@ -230,8 +227,8 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id_produk`, `nm_produk`, `deskripsi`, `harga`, `stok`) VALUES
-(1, 'Bubuk Kopi Arabika', 'Arabika coffe', '65000', 3),
-(2, 'Bubuk Coffe Robusta', 'Robusta Coffe', '70000', 8),
+(1, 'Bubuk Kopi Arabika', 'Arabika coffe', '65000', 1),
+(2, 'Bubuk Coffe Robusta', 'Robusta Coffe', '70000', 6),
 (3, 'Bubuk Coffe Ekspreso', 'Ekspreso Coffe', '80000', 3);
 
 -- --------------------------------------------------------
@@ -294,6 +291,8 @@ CREATE TABLE `user` (
   `nama_user` varchar(125) NOT NULL,
   `alamat` text NOT NULL,
   `no_hp` varchar(15) NOT NULL,
+  `no_rek` varchar(20) NOT NULL,
+  `nm_bank` varchar(10) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
   `level_user` int(11) NOT NULL
@@ -303,13 +302,14 @@ CREATE TABLE `user` (
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id_user`, `nama_user`, `alamat`, `no_hp`, `username`, `password`, `level_user`) VALUES
-(1, 'Yayan Ahmad', 'Kuningan, Jawa Barat', '085156727368', 'supplier', 'supplier', 1),
-(2, 'maman', 'ciawigebang', '085156727368', 'pabrik', 'pabrik', 2),
-(4, 'distributor', 'Cigadung Kuningan', '08987654678', 'distributor', 'distributor', 3),
-(5, 'Dahlan Sadikin', 'Cilebak, Kuningan', '089765678765', 'supplier2', 'supplier2', 1),
-(6, 'distributor2', 'distributor2', '087894653425', 'distributor2', 'distributor2', 3),
-(7, 'Pemilik', 'Cigugur Kab Kuningan', '0897654345652', 'pemilik', 'pemilik', 4);
+INSERT INTO `user` (`id_user`, `nama_user`, `alamat`, `no_hp`, `no_rek`, `nm_bank`, `username`, `password`, `level_user`) VALUES
+(1, 'Yayan Ahmad', 'Kuningan, Jawa Barat', '085156727368', '0113877635546', 'BRI', 'supplier', 'supplier', 1),
+(2, 'maman', 'ciawigebang', '085156727368', '0113332256746534', 'BNI', 'pabrik', 'pabrik', 2),
+(4, 'distributor', 'Cigadung Kuningan', '08987654678', '0091827365261728', 'BNI', 'distributor', 'distributor', 3),
+(5, 'Dahlan Sadikin', 'Cilebak, Kuningan', '089765678765', '0001212232234456', 'BRI', 'supplier2', 'supplier2', 1),
+(6, 'distributor2', 'distributor2', '087894653425', '0098992343787899', 'BRI', 'distributor2', 'distributor2', 3),
+(7, 'Pemilik', 'Cigugur Kab Kuningan', '0897654345652', '0011112223245434', 'BRI', 'pemilik', 'pemilik', 4),
+(8, 'coba', 'coba', '0875698745633', '123344', 'MANDIRI', 'coba', 'coba', 1);
 
 --
 -- Indexes for dumped tables
@@ -407,7 +407,7 @@ ALTER TABLE `bb_masukpabrik`
 -- AUTO_INCREMENT untuk tabel `detail_invoiced`
 --
 ALTER TABLE `detail_invoiced`
-  MODIFY `id_detaild` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_detaild` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_invoicep`
@@ -437,7 +437,7 @@ ALTER TABLE `produk_masukdistr`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

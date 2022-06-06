@@ -23,6 +23,9 @@ class mPesananDistributor extends CI_Model
     {
         $data['pesanan'] = $this->db->query("SELECT * FROM invoice_distributor JOIN detail_invoiced ON invoice_distributor.id_invoiced = detail_invoiced.id_invoiced JOIN produk ON produk.id_produk = detail_invoiced.id_produk WHERE invoice_distributor.id_invoiced='" . $id . "'")->result();
         $data['transaksi'] = $this->db->query("SELECT * FROM invoice_distributor JOIN user ON invoice_distributor.id_user=user.id_user WHERE id_invoiced='" . $id . "'")->row();
+
+        //data rekening
+        $data['pabrik'] = $this->db->query("SELECT * FROM `user` WHERE level_user='2'")->row();
         return $data;
     }
     public function transaksi()

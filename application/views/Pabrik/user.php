@@ -34,6 +34,7 @@
                                     <th>Nama User</th>
                                     <th>Alamat</th>
                                     <th>No Telepon</th>
+                                    <th>No Rekening</th>
                                     <th>Akun</th>
                                     <th>Level User</th>
                                     <th>Action</th>
@@ -49,6 +50,7 @@
                                         <td><?= $value->nama_user ?></td>
                                         <td><?= $value->alamat ?></td>
                                         <td><?= $value->no_hp ?></td>
+                                        <td>Bank : <span class="badge badge-success"><?= $value->nm_bank ?></span><br><?= $value->no_rek ?></td>
                                         <td>Username : <span class="badge badge-info"><?= $value->username ?></span><br>
                                             Password : <span class="badge badge-warning"> <?= $value->password ?></span></td>
                                         <td><?php if ($value->level_user == '1') {
