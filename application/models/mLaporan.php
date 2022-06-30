@@ -80,6 +80,41 @@ class mLaporan extends CI_Model
         $this->db->where('YEAR(tgl_orderpabrik)', $tahun);
         return $this->db->get()->result();
     }
+
+    //laporan penjualan bahan jadi
+    //---------laporan pemesanan bahan baku------------
+    public function lap_harian_pesanan_bj($tanggal, $bulan, $tahun)
+    {
+        $this->db->select('*');
+        $this->db->from('invoice_distributor');
+        $this->db->join('user', 'invoice_distributor.id_user = user.id_user', 'left');
+
+        $this->db->where('DAY(tgl_orderdistr)', $tanggal);
+        $this->db->where('MONTH(tgl_orderdistr)', $bulan);
+        $this->db->where('YEAR(tgl_orderdistr)', $tahun);
+        return $this->db->get()->result();
+    }
+
+    public function lap_bulanan_pesanan_bj($bulan, $tahun)
+    {
+        $this->db->select('*');
+        $this->db->from('invoice_distributor');
+        $this->db->join('user', 'invoice_distributor.id_user = user.id_user', 'left');
+
+        $this->db->where('MONTH(tgl_orderdistr)', $bulan);
+        $this->db->where('YEAR(tgl_orderdistr)', $tahun);
+        return $this->db->get()->result();
+    }
+
+    public function lap_tahunan_pesanan_bj($tahun)
+    {
+        $this->db->select('*');
+        $this->db->from('invoice_distributor');
+        $this->db->join('user', 'invoice_distributor.id_user = user.id_user', 'left');
+
+        $this->db->where('YEAR(tgl_orderdistr)', $tahun);
+        return $this->db->get()->result();
+    }
 }
 
 /* End of file mLaporan.php */

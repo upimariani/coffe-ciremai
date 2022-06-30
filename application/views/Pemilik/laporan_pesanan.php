@@ -3,7 +3,7 @@
     <div class="row align-items-center">
         <div class="col-sm-6 mb-5 mt-5">
             <div class="breadcrumbs-area clearfix">
-                <h4 class="page-title pull-left">Cetak Laporan Pabrik</h4>
+                <h4 class="page-title pull-left">Cetak Laporan Pemesanan Bahan Baku Pabrik</h4>
 
             </div>
         </div>

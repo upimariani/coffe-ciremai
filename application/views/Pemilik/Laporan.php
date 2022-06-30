@@ -3,7 +3,7 @@
     <div class="row align-items-center">
         <div class="col-sm-6 mb-5 mt-5">
             <div class="breadcrumbs-area clearfix">
-                <h4 class="page-title pull-left">Cetak Laporan Pabrik</h4>
+                <h4 class="page-title pull-left">Cetak Laporan Bahan Baku Keluar</h4>
 
             </div>
         </div>
@@ -17,7 +17,7 @@
         <div class="col-md-4">
             <div class="card card-light">
                 <div class="card-header">
-                    <h3 class="card-title">Laporan Penjualan Harian</h3>
+                    <h3 class="card-title">Laporan Bahan Baku Keluar Harian</h3>
                 </div>
                 <div class="card-body">
                     <?php
@@ -81,7 +81,7 @@
         <div class="col-md-4">
             <div class="card card-light">
                 <div class="card-header">
-                    <h3 class="card-title">Laporan Penjualan Bulanan</h3>
+                    <h3 class="card-title">Laporan Bahan Baku Keluar Bulanan</h3>
                 </div>
                 <div class="card-body">
                     <?php
@@ -131,7 +131,7 @@
         <div class="col-md-4">
             <div class="card card-light">
                 <div class="card-header">
-                    <h3 class="card-title">Laporan Penjualan Tahunan</h3>
+                    <h3 class="card-title">Laporan Bahan Baku Keluar Tahunan</h3>
                 </div>
                 <div class="card-body">
                     <?php

@@ -25,25 +25,40 @@
                                         <th scope="col">No.</th>
                                         <th scope="col">id Invoice</th>
                                         <th scope="col">Supplier</th>
-                                        <th scope="col">Total Bayar</th>
+
                                         <th scope="col">Tanggal Transaksi</th>
+                                        <th scope="col">Total Bayar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $no = 1;
+                                    $total = 0;
                                     foreach ($laporan as $key => $value) {
+                                        $total += $value->total_bayarpabrik;
                                     ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
                                             <td><?= $value->id_invoicep ?></td>
                                             <td><?= $value->nama_user ?></td>
-                                            <td>Rp. <?= number_format($value->total_bayarpabrik) ?></td>
                                             <td><?= $value->tgl_orderpabrik ?></td>
+                                            <td>Rp. <?= number_format($value->total_bayarpabrik) ?></td>
+
                                         </tr>
                                     <?php
                                     }
                                     ?>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <h4>Total:</h4>
+                                        </td>
+                                        <td>
+                                            <h5>Rp. <?= number_format($total) ?></h5>
+                                        </td>
+                                    </tr>
 
                                 </tbody>
                             </table>

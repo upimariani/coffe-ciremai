@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Jun 2022 pada 00.41
--- Versi server: 10.4.6-MariaDB
--- Versi PHP: 7.3.9
+-- Generation Time: Jun 30, 2022 at 05:43 AM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 7.4.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bahan_baku`
+-- Table structure for table `bahan_baku`
 --
 
 CREATE TABLE `bahan_baku` (
@@ -38,7 +37,7 @@ CREATE TABLE `bahan_baku` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `bahan_baku`
+-- Dumping data for table `bahan_baku`
 --
 
 INSERT INTO `bahan_baku` (`id_bahanbaku`, `id_user`, `nm_bahanbaku`, `deskripsi_bb`, `harga_bb`, `stok_bb`) VALUES
@@ -51,7 +50,7 @@ INSERT INTO `bahan_baku` (`id_bahanbaku`, `id_user`, `nm_bahanbaku`, `deskripsi_
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bb_keluarpabrik`
+-- Table structure for table `bb_keluarpabrik`
 --
 
 CREATE TABLE `bb_keluarpabrik` (
@@ -63,7 +62,7 @@ CREATE TABLE `bb_keluarpabrik` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `bb_keluarpabrik`
+-- Dumping data for table `bb_keluarpabrik`
 --
 
 INSERT INTO `bb_keluarpabrik` (`id_bbkeluarp`, `id_bbmasukp`, `tgl_keluar`, `stokpk`, `time`) VALUES
@@ -76,7 +75,7 @@ INSERT INTO `bb_keluarpabrik` (`id_bbkeluarp`, `id_bbmasukp`, `tgl_keluar`, `sto
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bb_masukpabrik`
+-- Table structure for table `bb_masukpabrik`
 --
 
 CREATE TABLE `bb_masukpabrik` (
@@ -88,7 +87,7 @@ CREATE TABLE `bb_masukpabrik` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `bb_masukpabrik`
+-- Dumping data for table `bb_masukpabrik`
 --
 
 INSERT INTO `bb_masukpabrik` (`id_bbmasukp`, `id_detailp`, `tgl_masuk`, `stokp`, `time`) VALUES
@@ -103,7 +102,7 @@ INSERT INTO `bb_masukpabrik` (`id_bbmasukp`, `id_detailp`, `tgl_masuk`, `stokp`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_invoiced`
+-- Table structure for table `detail_invoiced`
 --
 
 CREATE TABLE `detail_invoiced` (
@@ -114,7 +113,7 @@ CREATE TABLE `detail_invoiced` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `detail_invoiced`
+-- Dumping data for table `detail_invoiced`
 --
 
 INSERT INTO `detail_invoiced` (`id_detaild`, `id_invoiced`, `id_produk`, `qty_produk`) VALUES
@@ -132,7 +131,7 @@ INSERT INTO `detail_invoiced` (`id_detaild`, `id_invoiced`, `id_produk`, `qty_pr
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_invoicep`
+-- Table structure for table `detail_invoicep`
 --
 
 CREATE TABLE `detail_invoicep` (
@@ -143,7 +142,7 @@ CREATE TABLE `detail_invoicep` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `detail_invoicep`
+-- Dumping data for table `detail_invoicep`
 --
 
 INSERT INTO `detail_invoicep` (`id_detailp`, `id_invoicep`, `id_bahanbaku`, `qty_bb`) VALUES
@@ -160,7 +159,7 @@ INSERT INTO `detail_invoicep` (`id_detailp`, `id_invoicep`, `id_bahanbaku`, `qty
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `invoice_distributor`
+-- Table structure for table `invoice_distributor`
 --
 
 CREATE TABLE `invoice_distributor` (
@@ -174,18 +173,17 @@ CREATE TABLE `invoice_distributor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `invoice_distributor`
+-- Dumping data for table `invoice_distributor`
 --
 
 INSERT INTO `invoice_distributor` (`id_invoiced`, `id_user`, `tgl_orderdistr`, `total_bayardistr`, `status_orderdistr`, `bukti_bayardistr`, `bts_bayard`) VALUES
 ('20220509L7X1BM4G', 4, '2022-05-09', '565000', 4, 'gambar.gif', '2022-04-19'),
-('20220509MRGDH5T6', 6, '2022-05-09', '1240000', 4, 'download.jpg', '2022-04-19'),
-('20220607LYQF4NOK', 4, '2022-06-07', '270000', 0, '', '2022-06-08');
+('20220509MRGDH5T6', 6, '2022-05-09', '1240000', 4, 'download.jpg', '2022-04-19');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `invoice_pabrik`
+-- Table structure for table `invoice_pabrik`
 --
 
 CREATE TABLE `invoice_pabrik` (
@@ -200,7 +198,7 @@ CREATE TABLE `invoice_pabrik` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `invoice_pabrik`
+-- Dumping data for table `invoice_pabrik`
 --
 
 INSERT INTO `invoice_pabrik` (`id_invoicep`, `id_user`, `tgl_orderpabrik`, `total_bayarpabrik`, `status_orderpabrik`, `bukti_bayarpabrik`, `supplier`, `bts_bayarp`) VALUES
@@ -211,7 +209,7 @@ INSERT INTO `invoice_pabrik` (`id_invoicep`, `id_user`, `tgl_orderpabrik`, `tota
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `produk`
+-- Table structure for table `produk`
 --
 
 CREATE TABLE `produk` (
@@ -223,7 +221,7 @@ CREATE TABLE `produk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `produk`
+-- Dumping data for table `produk`
 --
 
 INSERT INTO `produk` (`id_produk`, `nm_produk`, `deskripsi`, `harga`, `stok`) VALUES
@@ -234,7 +232,7 @@ INSERT INTO `produk` (`id_produk`, `nm_produk`, `deskripsi`, `harga`, `stok`) VA
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `produk_keluardistr`
+-- Table structure for table `produk_keluardistr`
 --
 
 CREATE TABLE `produk_keluardistr` (
@@ -246,7 +244,7 @@ CREATE TABLE `produk_keluardistr` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `produk_keluardistr`
+-- Dumping data for table `produk_keluardistr`
 --
 
 INSERT INTO `produk_keluardistr` (`id_keluard`, `id_masukd`, `tgl_keluar`, `time`, `qty_kel`) VALUES
@@ -257,7 +255,7 @@ INSERT INTO `produk_keluardistr` (`id_keluard`, `id_masukd`, `tgl_keluar`, `time
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `produk_masukdistr`
+-- Table structure for table `produk_masukdistr`
 --
 
 CREATE TABLE `produk_masukdistr` (
@@ -269,7 +267,7 @@ CREATE TABLE `produk_masukdistr` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `produk_masukdistr`
+-- Dumping data for table `produk_masukdistr`
 --
 
 INSERT INTO `produk_masukdistr` (`id_masukd`, `id_detaild`, `stokd`, `tgl_masuk`, `time`) VALUES
@@ -283,7 +281,7 @@ INSERT INTO `produk_masukdistr` (`id_masukd`, `id_detaild`, `stokd`, `tgl_masuk`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -299,7 +297,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id_user`, `nama_user`, `alamat`, `no_hp`, `no_rek`, `nm_bank`, `username`, `password`, `level_user`) VALUES
@@ -316,125 +314,125 @@ INSERT INTO `user` (`id_user`, `nama_user`, `alamat`, `no_hp`, `no_rek`, `nm_ban
 --
 
 --
--- Indeks untuk tabel `bahan_baku`
+-- Indexes for table `bahan_baku`
 --
 ALTER TABLE `bahan_baku`
   ADD PRIMARY KEY (`id_bahanbaku`);
 
 --
--- Indeks untuk tabel `bb_keluarpabrik`
+-- Indexes for table `bb_keluarpabrik`
 --
 ALTER TABLE `bb_keluarpabrik`
   ADD PRIMARY KEY (`id_bbkeluarp`);
 
 --
--- Indeks untuk tabel `bb_masukpabrik`
+-- Indexes for table `bb_masukpabrik`
 --
 ALTER TABLE `bb_masukpabrik`
   ADD PRIMARY KEY (`id_bbmasukp`);
 
 --
--- Indeks untuk tabel `detail_invoiced`
+-- Indexes for table `detail_invoiced`
 --
 ALTER TABLE `detail_invoiced`
   ADD PRIMARY KEY (`id_detaild`);
 
 --
--- Indeks untuk tabel `detail_invoicep`
+-- Indexes for table `detail_invoicep`
 --
 ALTER TABLE `detail_invoicep`
   ADD PRIMARY KEY (`id_detailp`);
 
 --
--- Indeks untuk tabel `invoice_distributor`
+-- Indexes for table `invoice_distributor`
 --
 ALTER TABLE `invoice_distributor`
   ADD PRIMARY KEY (`id_invoiced`);
 
 --
--- Indeks untuk tabel `invoice_pabrik`
+-- Indexes for table `invoice_pabrik`
 --
 ALTER TABLE `invoice_pabrik`
   ADD PRIMARY KEY (`id_invoicep`);
 
 --
--- Indeks untuk tabel `produk`
+-- Indexes for table `produk`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`id_produk`);
 
 --
--- Indeks untuk tabel `produk_keluardistr`
+-- Indexes for table `produk_keluardistr`
 --
 ALTER TABLE `produk_keluardistr`
   ADD PRIMARY KEY (`id_keluard`);
 
 --
--- Indeks untuk tabel `produk_masukdistr`
+-- Indexes for table `produk_masukdistr`
 --
 ALTER TABLE `produk_masukdistr`
   ADD PRIMARY KEY (`id_masukd`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `bahan_baku`
+-- AUTO_INCREMENT for table `bahan_baku`
 --
 ALTER TABLE `bahan_baku`
   MODIFY `id_bahanbaku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `bb_keluarpabrik`
+-- AUTO_INCREMENT for table `bb_keluarpabrik`
 --
 ALTER TABLE `bb_keluarpabrik`
   MODIFY `id_bbkeluarp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `bb_masukpabrik`
+-- AUTO_INCREMENT for table `bb_masukpabrik`
 --
 ALTER TABLE `bb_masukpabrik`
   MODIFY `id_bbmasukp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `detail_invoiced`
+-- AUTO_INCREMENT for table `detail_invoiced`
 --
 ALTER TABLE `detail_invoiced`
   MODIFY `id_detaild` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT untuk tabel `detail_invoicep`
+-- AUTO_INCREMENT for table `detail_invoicep`
 --
 ALTER TABLE `detail_invoicep`
   MODIFY `id_detailp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `produk`
+-- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
   MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `produk_keluardistr`
+-- AUTO_INCREMENT for table `produk_keluardistr`
 --
 ALTER TABLE `produk_keluardistr`
   MODIFY `id_keluard` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `produk_masukdistr`
+-- AUTO_INCREMENT for table `produk_masukdistr`
 --
 ALTER TABLE `produk_masukdistr`
   MODIFY `id_masukd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;

@@ -32,6 +32,17 @@ class mDashboard extends CI_Model
         $query = $this->db->query("SELECT SUM(stokd) as stok,deskripsi, harga, produk.id_produk, nm_produk FROM produk_masukdistr JOIN detail_invoiced ON produk_masukdistr.id_detaild = detail_invoiced.id_detaild JOIN invoice_distributor ON detail_invoiced.id_invoiced = invoice_distributor.id_invoiced JOIN produk ON detail_invoiced.id_produk = produk.id_produk WHERE id_user='" . $this->session->userdata('id') . "' GROUP BY produk.id_produk")->result();
         return $query;
     }
+
+
+    //grafik pemilik
+    public function grafik()
+    {
+        $this->db->select('SUM(total_bayardistr) as total, tgl_orderdistr');
+        $this->db->from('invoice_distributor');
+        $this->db->group_by('tgl_orderdistr');
+        $this->db->where('status_orderdistr=4');
+        return $this->db->get()->result();
+    }
 }
 
 /* End of file mDashboard.php */

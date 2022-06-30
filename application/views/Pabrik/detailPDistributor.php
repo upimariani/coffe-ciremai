@@ -31,6 +31,7 @@
                                 </div>
                                 <div class="iv-right col-6 text-md-right">
                                     <span><?= $detail['transaksi']->id_invoiced ?></span>
+
                                 </div>
                             </div>
                         </div>
@@ -48,6 +49,7 @@
                             <div class="col-md-6 text-md-right">
                                 <ul class="invoice-date">
                                     <li>Invoice Date : <?= $detail['transaksi']->tgl_orderdistr ?></li>
+                                    <span><?= $detail['transaksi']->nm_bank ?> No Rekening. <?= $detail['transaksi']->no_rek ?></span>
                                     <?php
                                     if ($detail['transaksi']->status_orderdistr != '0') {
                                     ?>

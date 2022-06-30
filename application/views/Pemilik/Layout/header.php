@@ -20,12 +20,17 @@
                 <div class="menu-inner">
                     <nav>
                         <ul class="metismenu" id="menu">
+                            <li><a href="<?= base_url('Pemilik/cdashboard') ?>"><i class="ti-shift-right"></i> <span>Dashboard</span></a></li>
+
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-files"></i><span>Laporan</span></a>
                                 <ul class="collapse">
                                     <li><a href="<?= base_url('Pemilik/cLaporan/pemesanan') ?>">Pemesanan Bahan Baku</a></li>
                                     <li>
-                                        <<a href="<?= base_url('Pemilik/cLaporan') ?>">Bahan Baku Keluar</a>
+                                        <a href="<?= base_url('Pemilik/cLaporan') ?>">Bahan Baku Keluar</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= base_url('Pemilik/cLaporanProdukJadi') ?>">Penjualan Produk Jadi</a>
                                     </li>
                                 </ul>
                             </li>
