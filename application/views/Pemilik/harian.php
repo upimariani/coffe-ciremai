@@ -40,7 +40,7 @@
                                             <td><?= $no++ ?></td>
                                             <td><?= $value->nm_bahanbaku ?></td>
                                             <td><?= $value->tgl_keluar ?></td>
-                                            <td><?= $value->stokpk ?> pcs</td>
+                                            <td><?= $value->stokpk ?> kg</td>
                                             <td><?= $value->tgl_masuk ?></td>
                                             <td><?= $value->id_invoicep ?></td>
                                             <td><?= $value->nama_user ?></td>
