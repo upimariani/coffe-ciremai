@@ -45,6 +45,8 @@ class mDashboard extends CI_Model
 		$this->db->from('penawaran');
 		$this->db->join('bahan_baku', 'penawaran.id_bahanbaku = bahan_baku.id_bahanbaku', 'left');
 		$this->db->join('user', 'user.id_user = bahan_baku.id_user', 'left');
+		$this->db->where('status_penawaran=0');
+
 		return $this->db->get()->result();
 	}
 
@@ -78,6 +80,20 @@ class mDashboard extends CI_Model
 		$this->db->group_by('tgl_orderdistr');
 		$this->db->where('status_orderdistr=4');
 		return $this->db->get()->result();
+	}
+
+	//-----------------------------NOTIFIKASI
+	public function notif_produk_kurang()
+	{
+		$query = $this->db->query("SELECT SUM(stokp) as stok, bahan_baku.id_bahanbaku, nm_bahanbaku, harga_bb, deskripsi_bb FROM bb_masukpabrik JOIN detail_invoicep ON bb_masukpabrik.id_detailp = detail_invoicep.id_detailp JOIN bahan_baku ON detail_invoicep.id_bahanbaku = bahan_baku.id_bahanbaku GROUP BY bahan_baku.id_bahanbaku")->result();
+		return $query;
+	}
+	public function notif_pemesanan()
+	{
+		$this->db->select('COUNT(id_invoicep) as jml');
+		$this->db->from('invoice_pabrik');
+		$this->db->where('status_orderpabrik=0');
+		return $this->db->get()->row();
 	}
 }
 

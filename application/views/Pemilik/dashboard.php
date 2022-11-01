@@ -19,7 +19,7 @@
 
                     <div class="row">
                         <div class="col-12 table-responsive">
-                            <canvas id="grafik" height="100"></canvas>
+                            <canvas id="grafik_pemilik" height="100"></canvas>
 
 
                         </div>

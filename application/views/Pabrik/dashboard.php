@@ -122,6 +122,7 @@
 											<td>
 												<?php
 												if ($value->stok <= '20') {
+
 												?>
 													<span class="text-danger"><?= $value->stok ?><i class="ti-arrow-down"></i></span>
 												<?php

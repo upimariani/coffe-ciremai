@@ -210,33 +210,7 @@
         });
     }, 3000)
 </script>
-<script>
-    console.log = function() {}
-    $("#bahan-jadi").on('change', function() {
 
-        $(".nama").html($(this).find(':selected').attr('data-nama'));
-        $(".nama").val($(this).find(':selected').attr('data-nama'));
-
-        $(".harga").html($(this).find(':selected').attr('data-harga'));
-        $(".harga").val($(this).find(':selected').attr('data-harga'));
-
-        $(".stok").html($(this).find(':selected').attr('data-stok'));
-        $(".stok").val($(this).find(':selected').attr('data-stok'));
-
-    });
-</script>
-<script>
-    console.log = function() {}
-    $("#bhn-jd").on('change', function() {
-
-        $(".harga").html($(this).find(':selected').attr('data-harga'));
-        $(".harga").val($(this).find(':selected').attr('data-harga'));
-
-        $(".stok").html($(this).find(':selected').attr('data-stok'));
-        $(".stok").val($(this).find(':selected').attr('data-stok'));
-
-    });
-</script>
 <script>
     <?php
     foreach ($transaksi_bj as $key => $value) {
@@ -244,7 +218,7 @@
         $total[] = $value->total;
     }
     ?>
-    var ctx = document.getElementById('grafik');
+    var ctx = document.getElementById('grafik_pemilik');
     var grafik = new Chart(ctx, {
         type: 'bar',
         data: {

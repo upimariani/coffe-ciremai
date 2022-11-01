@@ -9,6 +9,7 @@ class cPemesanan extends CI_Controller
 		parent::__construct();
 		$this->load->model('mBahanBaku');
 		$this->load->model('mPesananPabrik');
+		$this->load->model('mDashboard');
 	}
 
 	public function index()
@@ -95,6 +96,14 @@ class cPemesanan extends CI_Controller
 				'stok' => $this->input->post('stok')
 			);
 			$this->cart->insert($data);
+
+			$status_penawaran = array(
+				'status_penawaran' => '1'
+			);
+			$this->db->where('id_bahanbaku', $data['id']);
+
+			$this->db->update('penawaran', $status_penawaran);
+
 			$this->session->set_flashdata('success', 'Bahan Baku Berhasil Masuk kedalam Keranjang!');
 			redirect('Pabrik/cPemesanan/pesan/' . $supplier);
 		} else {
