@@ -2,7 +2,7 @@
     <div class="row align-items-center">
         <div class="col-sm-6 mb-5 mt-5">
             <div class="breadcrumbs-area clearfix">
-                <h4 class="page-title pull-left">Create New Bahan Jadi</h4>
+                <h4 class="page-title pull-left">Create New Produk</h4>
 
             </div>
             <a href="<?= base_url('Pabrik/cBahanJadi') ?>">Kembali</a>
@@ -17,10 +17,10 @@
             <div class="col-12 mt-5">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title">Create New Bahan Jadi</h4>
+                        <h4 class="header-title">Create New Produk</h4>
                         <form action="<?= base_url('Pabrik/cBahanJadi/create') ?>" method="POST">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Nama Bahan Jadi</label>
+                                <label for="exampleInputEmail1">Nama Produk</label>
                                 <input type="text" value="<?= set_value('nama') ?>" name="nama" class="form-control" placeholder="Enter Nama">
                                 <?= form_error('nama', '<small id="emailHelp" class="form-text text-danger">', '</small>') ?>
                             </div>

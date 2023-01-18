@@ -6,7 +6,7 @@
                 <h4 class="page-title pull-left">Transaksi Distributor</h4>
 
             </div>
-            <a href="<?= base_url('Distributor/cPemesanan/create') ?>">Pesan Bahan Jadi</a>
+            <a href="<?= base_url('Distributor/cPemesanan/create') ?>">Pesan Produk</a>
         </div>
     </div>
     <?php

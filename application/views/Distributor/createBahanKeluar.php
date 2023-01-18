@@ -28,9 +28,9 @@
                         <h4 class="header-title">Create Bahan Jadi Keluar</h4>
                         <form action="<?= base_url('Distributor/cBahanKeluar/create') ?>" method="POST">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Nama Bahan Jadi</label>
+                                <label for="exampleInputEmail1">Nama Produk</label>
                                 <select id="bhn-jd" name="bahan_jadi" class="form-control">
-                                    <option value="">---Pilih Bahan Jadi---</option>
+                                    <option value="">---Pilih Produk---</option>
                                     <?php
                                     foreach ($bahan_jadi as $key => $value) {
                                     ?>

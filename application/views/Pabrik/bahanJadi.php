@@ -6,7 +6,7 @@
                 <h4 class="page-title pull-left">Bahan Jadi</h4>
 
             </div>
-            <a href="<?= base_url('Pabrik/cBahanJadi/create') ?>">Create Bahan Jadi</a>
+            <a href="<?= base_url('Pabrik/cBahanJadi/create') ?>">Create Produk</a>
         </div>
     </div>
     <?php
@@ -25,7 +25,7 @@
         <div class="col-12 mt-5">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Data Table Default</h4>
+                    <h4 class="header-title">Informasi Produk</h4>
                     <div class="data-tables">
                         <table id="dataTable" class="text-center">
                             <thead class="bg-light text-capitalize">

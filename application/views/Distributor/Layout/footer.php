@@ -238,6 +238,18 @@
 
     });
 </script>
+<script>
+    console.log = function() {}
+    $("#kecamatan").on('change', function() {
+
+        $(".ongkir").html($(this).find(':selected').attr('data-ongkir'));
+        $(".ongkir").val($(this).find(':selected').attr('data-ongkir'));
+
+        $(".total").html($(this).find(':selected').attr('data-total'));
+        $(".total").val($(this).find(':selected').attr('data-total'));
+
+    });
+</script>
 </body>
 
 </html>

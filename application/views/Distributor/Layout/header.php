@@ -27,7 +27,7 @@
 
                             <li <?php if ($this->uri->segment(1) == 'Distributor' && $this->uri->segment(2) == 'cPemesanan') {
                                     echo 'class="active"';
-                                }  ?>><a href="<?= base_url('Distributor/cPemesanan') ?>"><i class="ti-shopping-cart-full"></i> <span>Pemesanan Bahan Jadi</span></a></li>
+                                }  ?>><a href="<?= base_url('Distributor/cPemesanan') ?>"><i class="ti-shopping-cart-full"></i> <span>Pemesanan Produk</span></a></li>
 
 
                             <li <?php if ($this->uri->segment(1) == 'Distributor' && $this->uri->segment(2) == 'cBahanMasuk') {
