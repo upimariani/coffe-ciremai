@@ -2,7 +2,7 @@
     <div class="row align-items-center">
         <div class="col-sm-6 mb-5 mt-5">
             <div class="breadcrumbs-area clearfix">
-                <h4 class="page-title pull-left">Pesan Bahan Jadi</h4>
+                <h4 class="page-title pull-left">Pesan Produk</h4>
 
             </div>
             <a href="<?= base_url('Distributor/cPemesanan') ?>">Kembali</a>
@@ -34,13 +34,13 @@
             <div class="col-12 mt-5">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title">Pesan Bahan Jadi</h4>
+                        <h4 class="header-title">Pesan Produk</h4>
                         <form action="<?= base_url('Distributor/cPemesanan/add_cart') ?>" method="POST">
                             <input type="hidden" name="price" class="harga">
                             <input type="hidden" name="stok" class="stok">
                             <input type="hidden" name="name" class="nama">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Nama Bahan Jadi</label>
+                                <label for="exampleInputEmail1">Nama Produk</label>
                                 <select id="bahan-jadi" name="id" class="custom-select">
                                     <option value=" ">---Pilih Bahan Baku---</option>
                                     <?php
@@ -88,59 +88,62 @@
                             <h4 class="header-title">Keranjang Pemesanan</h4>
                             <div class="single-table">
                                 <div class="table-responsive">
-                                    <table class="table text-center">
-                                        <thead class="text-uppercase">
-                                            <tr>
-                                                <th scope="col">No</th>
-                                                <th scope="col">Nama Barang</th>
-                                                <th scope="col">Harga</th>
-                                                <th scope="col">Quantity</th>
-                                                <th scope="col">Subtotal</th>
-                                                <th scope="col">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $no = 1;
-                                            foreach ($this->cart->contents() as $key => $value) {
-                                            ?>
+                                    <form action="<?= base_url('distributor/cpemesanan/updateCart') ?>" method="POST">
+                                        <table class="table text-center">
+                                            <thead class="text-uppercase">
                                                 <tr>
-                                                    <th scope="row"><?= $no++ ?>.</th>
-                                                    <td><?= $value['name'] ?></td>
-                                                    <td><?= $value['price'] ?></td>
-                                                    <td><?= $value['qty'] ?></td>
-                                                    <td>Rp. <?= number_format($value['price'] * $value['qty'])  ?></td>
-                                                    <td><a href="<?= base_url('Distributor/cPemesanan/delete_cart/' . $value['rowid']) ?>"><i class="ti-trash"></i></a></td>
+                                                    <th scope="col">No</th>
+                                                    <th scope="col">Nama Barang</th>
+                                                    <th scope="col">Harga</th>
+                                                    <th scope="col">Quantity</th>
+                                                    <th scope="col">Subtotal</th>
+                                                    <th scope="col">Action</th>
                                                 </tr>
-                                            <?php
-                                            }
-                                            ?>
-                                            <tr>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>Ongkir :</td>
-                                                <td class="ongkir">Rp. </td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>Sub Total :</td>
-                                                <td>Rp. <?= number_format($this->cart->total())  ?></td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>Total :</td>
-                                                <td class="total">Rp. </td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $no = 1;
+                                                $i = 1;
+                                                foreach ($this->cart->contents() as $key => $value) {
+                                                ?>
+                                                    <tr>
+                                                        <th scope="row"><?= $no++ ?>.</th>
+                                                        <td><?= $value['name'] ?></td>
+                                                        <td><?= $value['price'] ?></td>
+                                                        <td><input name="<?= $i . '[qty]' ?>" type="number" min="0" max="<?= $value['stok'] ?>" class="form-control" value="<?= $value['qty'] ?>"></td>
+                                                        <td>Rp. <?= number_format($value['price'] * $value['qty'])  ?></td>
+                                                        <td><a class="btn btn-danger" href="<?= base_url('Distributor/cPemesanan/delete_cart/' . $value['rowid']) ?>"><i class="ti-trash"></i></a><button type="submit" class="btn btn-success btn-sm">Update</button></td>
+                                                    </tr>
+                                                <?php
+                                                }
+                                                ?>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>Ongkir :</td>
+                                                    <td class="ongkir">Rp. </td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>Sub Total :</td>
+                                                    <td>Rp. <?= number_format($this->cart->total())  ?></td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                    <td>Total :</td>
+                                                    <td class="total">Rp. </td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </form>
                                     <hr>
                                     <h4>Masukkan Alamat Pengiriman</h4>
                                     <form action="<?= base_url('Distributor/cPemesanan/order') ?>" method="POST">

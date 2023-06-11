@@ -41,6 +41,8 @@
                                     <h5><?= $detail['transaksi']->nama_user ?></h5>
                                     <p><?= $detail['transaksi']->alamat ?></p>
                                     <p><?= $detail['transaksi']->no_hp ?></p><br>
+                                    <p>Alamat Pengiriman: <?= $detail['transaksi']->pengiriman ?></p>
+                                    <p>Ongkir: Rp.<?= number_format($detail['transaksi']->ongkir)  ?></p>
                                     <hr>
                                 </div>
 

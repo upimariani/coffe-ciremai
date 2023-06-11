@@ -38,7 +38,7 @@
 
 							<li <?php if ($this->uri->segment(1) == 'Pabrik' && $this->uri->segment(2) == 'cBahanJadi') {
 									echo 'class="active"';
-								}  ?>><a href="<?= base_url('Pabrik/cBahanJadi') ?>"><i class="ti-archive"></i> <span>Pengelolaan Bahan Jadi</span></a></li>
+								}  ?>><a href="<?= base_url('Pabrik/cBahanJadi') ?>"><i class="ti-archive"></i> <span>Pengelolaan Produk Jadi</span></a></li>
 
 							<li <?php if ($this->uri->segment(1) == 'Pabrik' && $this->uri->segment(2) == 'cBahanBaku') {
 									echo 'class="active"';

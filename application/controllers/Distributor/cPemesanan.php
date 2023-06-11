@@ -103,6 +103,19 @@ class cPemesanan extends CI_Controller
         $this->cart->remove($id);
         redirect('Distributor/cPemesanan/create', 'refresh');
     }
+    public function updateCart()
+    {
+        $i = 1;
+        foreach ($this->cart->contents() as $items) {
+            $data = array(
+                'rowid'  => $items['rowid'],
+                'qty'    => $this->input->post($i . '[qty]')
+            );
+            $this->cart->update($data);
+            $i++;
+        }
+        redirect('Distributor/cPemesanan/create', 'refresh');
+    }
     public function order()
     {
         $this->protect->protect();

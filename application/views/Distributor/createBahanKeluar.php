@@ -29,15 +29,18 @@
                         <form action="<?= base_url('Distributor/cBahanKeluar/create') ?>" method="POST">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nama Produk</label>
-                                <select id="bhn-jd" name="bahan_jadi" class="form-control">
+                                <select id="bhn-jd" name="bahan_jadi" class="custom-select">
                                     <option value="">---Pilih Produk---</option>
                                     <?php
                                     foreach ($bahan_jadi as $key => $value) {
+                                        if ($value->stokd != 0) {
+
                                     ?>
-                                        <option data-harga="Rp. <?= number_format($value->harga, 0)  ?>" data-stok="<?= $value->stokd ?>" value="<?= $value->id_masukd ?>" <?php if (set_value('bahan_jadi') == $value->id_masukd) {
-                                                                                                                                                                                echo 'selected';
-                                                                                                                                                                            } ?>><?= $value->nm_produk ?> | Stok Tgl <?= $value->tgl_masuk ?></option>
+                                            <option data-harga="Rp. <?= number_format($value->harga, 0)  ?>" data-stok="<?= $value->stokd ?>" value="<?= $value->id_masukd ?>" <?php if (set_value('bahan_jadi') == $value->id_masukd) {
+                                                                                                                                                                                    echo 'selected';
+                                                                                                                                                                                } ?>><?= $value->nm_produk ?> | Stok Tgl <?= $value->tgl_masuk ?></option>
                                     <?php
+                                        }
                                     }
                                     ?>
                                 </select>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 19 Okt 2022 pada 04.49
+-- Waktu pembuatan: 02 Apr 2023 pada 00.16
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -91,7 +91,7 @@ CREATE TABLE `bb_masukpabrik` (
 --
 
 INSERT INTO `bb_masukpabrik` (`id_bbmasukp`, `id_detailp`, `tgl_masuk`, `stokp`, `time`) VALUES
-(1, 3, '2022-05-09', 2, '2022-05-09 02:05:51'),
+(1, 3, '2022-05-09', 0, '2022-05-09 02:05:51'),
 (2, 4, '2022-05-09', 11, '2022-05-09 02:05:51'),
 (3, 5, '2022-05-09', 2, '2022-05-09 02:05:51'),
 (4, 1, '2022-05-09', 3, '2022-05-09 02:05:57'),
@@ -126,7 +126,8 @@ INSERT INTO `detail_invoiced` (`id_detaild`, `id_invoiced`, `id_produk`, `qty_pr
 (7, '20220530ZBTUANF8', 1, 2),
 (8, '20220530ZBTUANF8', 3, 2),
 (9, '20220607LYQF4NOK', 2, 2),
-(10, '20220607LYQF4NOK', 1, 2);
+(10, '20220607LYQF4NOK', 1, 2),
+(11, '20230128QDPURX6N', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -169,16 +170,19 @@ CREATE TABLE `invoice_distributor` (
   `total_bayardistr` varchar(15) NOT NULL,
   `status_orderdistr` int(11) NOT NULL,
   `bukti_bayardistr` text NOT NULL,
-  `bts_bayard` varchar(15) NOT NULL
+  `bts_bayard` varchar(15) NOT NULL,
+  `pengiriman` text NOT NULL,
+  `ongkir` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `invoice_distributor`
 --
 
-INSERT INTO `invoice_distributor` (`id_invoiced`, `id_user`, `tgl_orderdistr`, `total_bayardistr`, `status_orderdistr`, `bukti_bayardistr`, `bts_bayard`) VALUES
-('20220509L7X1BM4G', 4, '2022-05-09', '565000', 4, 'gambar.gif', '2022-04-19'),
-('20220509MRGDH5T6', 6, '2022-05-09', '1240000', 4, 'download.jpg', '2022-04-19');
+INSERT INTO `invoice_distributor` (`id_invoiced`, `id_user`, `tgl_orderdistr`, `total_bayardistr`, `status_orderdistr`, `bukti_bayardistr`, `bts_bayard`, `pengiriman`, `ongkir`) VALUES
+('20220509L7X1BM4G', 4, '2022-05-09', '565000', 4, 'gambar.gif', '2022-04-19', 'Purwawinangun Pramuka Kec. Kalimang', '21000'),
+('20220509MRGDH5T6', 6, '2022-05-09', '1240000', 4, 'download.jpg', '2022-04-19', 'Purwawinangun Pramuka Kec. Kalimang', '21000'),
+('20230128QDPURX6N', 4, '2023-01-28', '101000', 0, '', '2023-01-29', 'Purwawinangun Pramuka Kec. Kalimang', '21000');
 
 -- --------------------------------------------------------
 
@@ -217,15 +221,16 @@ CREATE TABLE `penawaran` (
   `id_bahanbaku` int(11) NOT NULL,
   `tgl_penawaran` varchar(15) NOT NULL,
   `kalimat` text NOT NULL,
-  `jml_tawaran` int(11) NOT NULL
+  `jml_tawaran` int(11) NOT NULL,
+  `status_penawaran` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `penawaran`
 --
 
-INSERT INTO `penawaran` (`id_penawaran`, `id_bahanbaku`, `tgl_penawaran`, `kalimat`, `jml_tawaran`) VALUES
-(1, 1, '2022-10-19', 'Ayo Lakukan Transaksi, Bahan Baku anda sudah menipis', 11);
+INSERT INTO `penawaran` (`id_penawaran`, `id_bahanbaku`, `tgl_penawaran`, `kalimat`, `jml_tawaran`, `status_penawaran`) VALUES
+(1, 1, '2022-10-19', 'Ayo Lakukan Transaksi, Bahan Baku anda sudah menipis', 11, 0);
 
 -- --------------------------------------------------------
 
@@ -248,7 +253,7 @@ CREATE TABLE `produk` (
 INSERT INTO `produk` (`id_produk`, `nm_produk`, `deskripsi`, `harga`, `stok`) VALUES
 (1, 'Bubuk Kopi Arabika', 'Arabika coffe', '65000', 1),
 (2, 'Bubuk Coffe Robusta', 'Robusta Coffe', '70000', 6),
-(3, 'Bubuk Coffe Ekspreso', 'Ekspreso Coffe', '80000', 3);
+(3, 'Bubuk Coffe Ekspreso', 'Ekspreso Coffe', '80000', 2);
 
 -- --------------------------------------------------------
 
@@ -292,7 +297,7 @@ CREATE TABLE `produk_masukdistr` (
 --
 
 INSERT INTO `produk_masukdistr` (`id_masukd`, `id_detaild`, `stokd`, `tgl_masuk`, `time`) VALUES
-(1, 1, 3, '2022-05-09', '2022-05-09 02:14:38'),
+(1, 1, 4, '2022-05-09', '2022-05-09 02:14:38'),
 (2, 2, 3, '2022-05-09', '2022-05-09 02:14:38'),
 (3, 3, 10, '2022-05-09', '2022-05-09 02:15:05'),
 (4, 4, 5, '2022-05-09', '2022-05-09 02:15:05'),
@@ -432,7 +437,7 @@ ALTER TABLE `bb_masukpabrik`
 -- AUTO_INCREMENT untuk tabel `detail_invoiced`
 --
 ALTER TABLE `detail_invoiced`
-  MODIFY `id_detaild` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_detaild` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_invoicep`

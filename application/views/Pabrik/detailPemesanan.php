@@ -41,6 +41,7 @@
                                     <h5><?= $detail['transaksi']->nama_user ?></h5>
                                     <p><?= $detail['transaksi']->alamat ?></p>
                                     <p><?= $detail['transaksi']->no_hp ?></p><br>
+
                                     <hr>
                                 </div>
 

@@ -117,6 +117,21 @@ class cPemesanan extends CI_Controller
 		$this->cart->remove($id);
 		redirect('Pabrik/cPemesanan/pesan/' . $supplier);
 	}
+	public function updateCart()
+	{
+		$this->protect->protect();
+		$supplier = $this->input->post('supplier');
+		$i = 1;
+		foreach ($this->cart->contents() as $items) {
+			$data = array(
+				'rowid'  => $items['rowid'],
+				'qty'    => $this->input->post($i . '[qty]')
+			);
+			$this->cart->update($data);
+			$i++;
+		}
+		redirect('Pabrik/cPemesanan/pesan/' . $supplier);
+	}
 	public function order()
 	{
 		$this->protect->protect();

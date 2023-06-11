@@ -42,7 +42,7 @@
 
 							<div class="form-group">
 								<label for="exampleInputEmail1">Nama Bahan Baku</label>
-								<select id="bahan-baku" name="id" class="form-control" required>
+								<select id="bahan-baku" name="id" class="custom-select" required>
 									<option value="">---Pilih Bahan Baku---</option>
 									<?php
 									foreach ($bahan_baku as $key => $value) {
@@ -92,44 +92,48 @@
 							<h4 class="header-title">Keranjang Pemesanan</h4>
 							<div class="single-table">
 								<div class="table-responsive">
-									<table class="table text-center">
-										<thead class="text-uppercase">
-											<tr>
-												<th scope="col">No</th>
-												<th scope="col">Nama Barang</th>
-												<th scope="col">Harga</th>
-												<th scope="col">Quantity</th>
-												<th scope="col">Subtotal</th>
-												<th scope="col">Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php
-											$no = 1;
-											foreach ($this->cart->contents() as $key => $value) {
-											?>
+									<form action="<?= base_url('pabrik/cpemesanan/updateCart') ?>" method="POST">
+										<input type="hidden" name="supplier" value="<?= $supplier ?>">
+										<table class="table text-center">
+											<thead class="text-uppercase">
 												<tr>
-													<th scope="row"><?= $no++ ?>.</th>
-													<td><?= $value['name'] ?></td>
-													<td><?= $value['price'] ?></td>
-													<td><?= $value['qty'] ?></td>
-													<td>Rp. <?= number_format($value['price'] * $value['qty'])  ?></td>
-													<td><a href="<?= base_url('Pabrik/cPemesanan/delete_cart/' . $value['rowid'] . '/' . $supplier) ?>"><i class="ti-trash"></i></a></td>
+													<th scope="col">No</th>
+													<th scope="col">Nama Barang</th>
+													<th scope="col">Harga</th>
+													<th scope="col">Quantity</th>
+													<th scope="col">Subtotal</th>
+													<th scope="col">Action</th>
 												</tr>
-											<?php
-											}
-											?>
-											<tr>
-												<td>&nbsp;</td>
-												<td>&nbsp;</td>
-												<td>&nbsp;</td>
+											</thead>
+											<tbody>
+												<?php
+												$i = 1;
+												$no = 1;
+												foreach ($this->cart->contents() as $key => $value) {
+												?>
+													<tr>
+														<th scope="row"><?= $no++ ?>.</th>
+														<td><?= $value['name'] ?></td>
+														<td><?= $value['price'] ?></td>
+														<td><input name="<?= $i . '[qty]' ?>" type="number" min="0" max="<?= $value['stok'] ?>" class="form-control" value="<?= $value['qty'] ?>"></td>
+														<td>Rp. <?= number_format($value['price'] * $value['qty'])  ?></td>
+														<td><a href="<?= base_url('Pabrik/cPemesanan/delete_cart/' . $value['rowid'] . '/' . $supplier) ?>" class="btn btn-danger"><i class="ti-trash"></i></a><button type="submit" class="btn btn-success btn-sm">Update</button></td>
+													</tr>
+												<?php
+												}
+												?>
+												<tr>
+													<td>&nbsp;</td>
+													<td>&nbsp;</td>
+													<td>&nbsp;</td>
 
-												<td>Total :</td>
-												<td>Rp. <?= number_format($this->cart->total())  ?></td>
-												<td>&nbsp;</td>
-											</tr>
-										</tbody>
-									</table>
+													<td>Total :</td>
+													<td>Rp. <?= number_format($this->cart->total())  ?></td>
+													<td>&nbsp;</td>
+												</tr>
+											</tbody>
+										</table>
+									</form>
 									<form action="<?= base_url('Pabrik/cPemesanan/order') ?>" method="POST">
 										<?php $id_transaksi = date('Ymd') . strtoupper(random_string('alnum', 8));
 										?>

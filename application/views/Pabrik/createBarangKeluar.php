@@ -31,13 +31,16 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Nama Bahan Baku</label>
-                                        <select id="bhn_baku" class="form-control" name="bahan_baku">
+                                        <select id="bhn_baku" class="custom-select" name="bahan_baku">
                                             <option value="">---Pilih Bahan Baku---</option>
                                             <?php
                                             foreach ($bahan_baku as $key => $value) {
+                                                if ($value->stokp != 0) {
+
                                             ?>
-                                                <option data-tglMasuk="<?= $value->tgl_masuk ?>" data-qty="<?= $value->stokp ?>" value="<?= $value->id_bbmasukp ?>"><?= $value->nm_bahanbaku ?> | <?= $value->tgl_masuk ?></option>
+                                                    <option data-tglMasuk="<?= $value->tgl_masuk ?>" data-qty="<?= $value->stokp ?>" value="<?= $value->id_bbmasukp ?>"><?= $value->nm_bahanbaku ?> | <?= $value->tgl_masuk ?></option>
                                             <?php
+                                                }
                                             }
                                             ?>
                                         </select>
